@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+   
+	<!--<mvc:annotation-driven enable-matrix-variables="true" validator="validator" />-->
+        <mvc:annotation-driven enable-matrix-variables="true" />
+        <mvc:resources location="/resources/" mapping="/resources/**"  />
+	<context:component-scan base-package="app.packages" />
+       
+
+        <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
+            <property name="defaultLocale" value="pl" />
+        </bean>
+          
+        <!-- Okreslenie polozenia i typu widoku -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+            <property name="prefix" value="/WEB-INF/views/" />
+            <property name="suffix" value=".jsp" />
+	</bean>      
+        
+        <!-- Okreslenie pliku message properties -->
+	<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+            <property name="basename" value="messages"/> 
+	</bean>
+        
+        <!-- validator (zawiera odnosnik do beana lokalizujacego pliki properties z messages --> <!--
+        <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" >
+            <property name="validationMessageSource" ref="messageSource" />
+        </bean> 
+      -->
+        <!--konfiguracja Hibernate --><!--
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/db1?zeroDateTimeBehavior=convertToNull" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+	</bean>
+        -->
+        <!-- Hibernate 4 SessionFactory Bean definition --> <!-- 
+	<bean id="hibernate4AnnotatedSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+                    <list>
+			<value>app.packages.domain.User</value>
+                    </list>
+		</property>
+		<property name="hibernateProperties">
+		    <props>
+                        <prop key="hibernate.current_session_context_class">thread</prop>
+                        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                        <prop key="hibernate.show_sql">true</prop>
+                    </props>
+		</property>
+	</bean>
+        -->
+        <!-- konfigiracja DAO i Services --> <!--
+        <bean id="userDao" class="app.packages.domain.repository.impl.UserDaoImpl">
+            <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+        
+	<bean id="userDaoService" class="app.packages.service.impl.UserDaoServiceImpl">
+            <property name="userDao" ref="userDao"></property>
+	</bean>
+        
+	<tx:annotation-driven transaction-manager="transactionManager" />
+        
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+            <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+                      -->      
+        <!-- interceptor -->
+        <!--
+        <mvc:interceptors>
+              <bean class="pack.app.interceptor.PerformanceMonitorInterceptor" />
+            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" >
+                <property name="paramName" value="language" />
+            </bean>
+            <bean class="pack.app.interceptor.AuditingInterceptor" />
+            
+            <bean class= "pack.app.interceptor.PromoCodeInterceptor">
+	 	<property name="promoCode" value="OF3RTA"/>
+	 	<property name="errorRedirect" value="invalidPromoCode"/>
+		<property name="offerRedirect" value="goodPromoCode"/>
+            </bean>
+        </mvc:interceptors>
+	-->
+       
+        
+      <!--  <bean id="productValidator" class="pack.app.validator.ProductValidator">  
+            <property name = "springValidators">     
+                    <set>
+                        <ref bean = "sztukiValidator" />     
+                        <ref bean = "productImageValidator" />
+                    </set>  
+           		
+           		
+            </property>
+        </bean>
+        -->
+        
+       <!-- validator dodany w set -->
+       <!--
+        <bean id="sztukiValidator" class="pack.app.validator.SztukiValidator" > </bean>
+	<bean id="productImageValidator" class="pack.app.validator.ProductImageValidator" > 
+            <property name="allowedSize" value="1000000" />
+        </bean>
+        -->
+        
+        <!-- Ustawienia przesylania wgrywania plików -->
+        <!--
+	<bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	  <property name="maxUploadSize" value="10240000"/>
+	</bean>
+        -->
+        
+        <!-- widok JSON i XML -->
+        <!--
+        <bean class= "org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+      		<map>
+         		<entry key="json" value="application/json;charset=UTF-8"/>
+         		<entry key="xml" value="application/xml;charset=UTF-8"/>
+         		<entry key="html" value="text/html;charset=UTF-8"/>
+      		</map>
+   		</property>
+		<property name="defaultViews">
+			<list>
+				<ref bean="jsonView"/>
+				<ref bean="xmlView"/>
+			</list>
+		</property>
+	</bean>
+        -->
+
+        <!--
+        <bean id="jsonView" class= "org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+		<property name="prettyPrint" value="true"/>
+	</bean>
+	
+	<bean id="xmlView" class= "org.springframework.web.servlet.view.xml.MarshallingView">
+		<constructor-arg>
+			<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+				<property name="classesToBeBound">
+					<list>
+						<value>pack.app.domain.Product</value>
+					</list>
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+        -->
+
+
+        
+</beans>
