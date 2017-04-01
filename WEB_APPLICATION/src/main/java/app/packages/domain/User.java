@@ -20,13 +20,20 @@ public class User implements Serializable{
     @Column(name="firtst_name")
     //@Size(min=4, max=25, message="{form.FirstName.lengthError}")
     private String firstName;
+    
     //@Size(min=4, max=25, message="{form.LastName.lengthError}")
     @Column(name="last_name")
     private String lastName;
+    
     @Column(name="address")
     private String address;
+    
     @Column(name="phone_number")
     private String phoneNumber;
+    
+    @Column(name="email_address")
+    private String emailAddress;
+    
     
     public User(){}
 

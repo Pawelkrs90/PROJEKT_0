@@ -16,19 +16,20 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link href="<c:url value="/resources/css/body.css" />" rel="stylesheet">
         <title>Index</title>
     </head>
 
     <body>
 
-            <nav class="navbar navbar-default navbar-fixed-top" >
+         <!--   <nav class="navbar navbar-default navbar-fixed-top" >
                 <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">WebSiteName</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="<spring:url value='/' />" >Home</a></li>
-                    <li><a href="<spring:url value='/Users' /> " > Users</a></li>
+                    <li class="active"><a href="<spring :url value='/' />" >Home</a></li>
+                    <li><a href="<spring :url value='/Users' /> " > Users</a></li>
                     <li><a href="#">Page 2</a></li>
                     <li><a href="#">Page 3</a></li>
                 </ul>
@@ -40,7 +41,29 @@
                 </ul>
                 </div>
             </nav>
-    
-  
+         
+         -->
+         <div style="background-color: #267871; width: 100%; text-align: center; padding-bottom: 5px; padding-top: 2px">
+             
+             <h3 style="color: #091002">MAIN PAGE</h3>
+             
+         </div>
+         <div style="background-color: #267871; width: 100%; text-align: center; margin-bottom: 4px; margin-top: 4px">
+             
+             <a href="#">Login</a>
+             <a href="#">Registration</a>
+             
+         </div>
+           <div style="background-color: #267871; width: 100%; text-align: center;">
+             
+                <a href="#">Main</a>
+                <a href="#">Profile</a>
+                <a href="#">TripCreator</a>
+                <a href="#">PathCreator</a>
+                <a href="#">MapEvents</a>
+                <a href="#">AdminPanel</a>
+              
+             
+         </div>
 
 </html>
