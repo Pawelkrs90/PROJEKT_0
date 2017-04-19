@@ -51,11 +51,11 @@
          <div style="background-color: #267871; width: 100%; text-align: center; margin-bottom: 4px; margin-top: 4px">
              
              <a href="#">Login</a>
-             <a href="#">Registration</a>
+             <a href="<spring:url value='/User/AddUser' />">Registration</a>
              
          </div>
            <div style="background-color: #267871; width: 100%; text-align: center;">
-             
+            
                 <a href="#">Main</a>
                 <a href="#">Profile</a>
                 <a href="#">TripCreator</a>

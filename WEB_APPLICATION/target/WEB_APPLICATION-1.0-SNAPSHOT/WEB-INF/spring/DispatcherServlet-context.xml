@@ -35,12 +35,12 @@
             <property name="validationMessageSource" ref="messageSource" />
         </bean> 
       -->
-        <!--konfiguracja Hibernate -->
+               <!--konfiguracja Hibernate -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/PROJECT_0_DB?zeroDateTimeBehavior=convertToNull" />
+		<property name="url" value="jdbc:mysql://localhost:3306/PROJECT_0?zeroDateTimeBehavior=convertToNull" />
 		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="password" value="root" />
 	</bean>
        
         <!-- Hibernate 4 SessionFactory Bean definition --> 
@@ -55,17 +55,19 @@
 		    <props>
                         <prop key="hibernate.current_session_context_class">thread</prop>
                         <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                        <prop key="hibernate.show_sql">true</prop>
+                        <prop key="hibernate.show_sql">true</prop> 
+                       <!-- <prop key="hibernate.format_sql">true</prop>  logs good looking(or not) -->
+                        <prop key="hibernate.hbm2ddl.auto">update</prop>
                     </props>
 		</property>
 	</bean>
         
         <!-- konfigiracja DAO i Services -->
-     <!--   <bean id="userDao" class="app.packages.domain.repository.impl.UserDaoImpl">
+        <bean id="userDao" class="app.packages.domain.repository.impl.UserDaoImpl">
             <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</bean>
         
-	<bean id="userDaoService" class="app.packages.service.impl.UserDaoServiceImpl">
+	<bean id="userDaoService" class="app.packages.service.Impl.UserDaoServiceImpl">
             <property name="userDao" ref="userDao"></property>
 	</bean>
         
@@ -74,7 +76,7 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
             <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
         </bean>
-                     -->    
+                   
         <!-- interceptor -->
         <!--
         <mvc:interceptors>

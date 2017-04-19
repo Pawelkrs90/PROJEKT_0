@@ -19,27 +19,29 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-
 @Controller
 @RequestMapping("/User")
 public class UserController {
     
     private UserDaoService userDaoService;
-/*	
+	
     @Autowired(required=true)
     @Qualifier(value="userDaoService")
     public void setUserService(UserDaoService us){
 	this.userDaoService = us;
     }
-   */ 
+    
     @RequestMapping(value = "/UserList", method = RequestMethod.GET)
     public String getAllUser(Model model){
         
-        List<User> lista = new ArrayList<>();
-        lista.add(new User(1, "aaa", "aaasdfada", "adadad", "4535353"));
-        lista.add(new User(1, "bbb", "bbbdsfdsf", "adadad", "4535353"));
-        lista.add(new User(1, "ccc", "cccdsfdsfsd", "adadad", "4535353"));
-        model.addAttribute("Users", lista);
+       // List<User> lista = new ArrayList<>();
+       // lista.add(new User(1, "aaa", "aaasdfada", "adadad", "4535353"));
+       /// lista.add(new User(2, "bbb", "bbbdsfdsf", "adadad", "4535353"));
+       // lista.add(new User(3, "ccc", "cccdsfdsfsd", "adadad", "4535353"));
+      //  lista.add(new User(4, "bbb", "bbbdsfdsf", "adadad", "4535353"));
+       // lista.add(new User(5, "ccc", "cccdsfdsfsd", "adadad", "4535353"));
+       
+        model.addAttribute("Users", userDaoService.getUserList());
         
         return "UserList";
     }
@@ -49,7 +51,7 @@ public class UserController {
     public String getUserInfo(Model model, @PathVariable("id") int userId){
         
         User user = new User(1, "aaa", "aaasdfada", "adadad", "4535353");
-        model.addAttribute("User", user);
+        model.addAttribute("User", userDaoService.getUserById(userId));
         
         return "UserInfo";
     }
@@ -87,15 +89,40 @@ public class UserController {
                                             + StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
             }
                   
-          //  userDaoService.addUser(user);
-            return "redirect:/UserList";
+            userDaoService.addUser(user);
+            return "redirect:/User/UserList";
+        }
+    
+        @RequestMapping(value = "/LoginUser", method = RequestMethod.GET)
+        public String loginFormUserInit(Model model){
+
+            model.addAttribute("LoginFormUser", new User());
+
+            return "LoginUser";
+        }
+
+        @RequestMapping(value = "/LoginUser", method = RequestMethod.POST)
+        public String loginFormUserLog(@ModelAttribute("LoginFormUser") @Valid User user,
+                                        BindingResult result, HttpServletRequest httpRequest){
+          
+            if(result.hasErrors()){   //jesli Validacja zwroci problem
+                return "LoginUser";
+            }
+            
+            if(result.getSuppressedFields().length > 0){  //sprawdzenie czy dodano tylko pola zgodne z binderem
+                throw new RuntimeException("Proba wiazania niedozwolonych pol: "
+                                            + StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
+            }
+                  
+            userDaoService.addUser(user);
+            return "redirect:/";
         }
     
         @InitBinder
         public void initialiseBinder(WebDataBinder binder){
             
             binder.setAllowedFields("id", "firstName", "lastName");
-}
+        }
     
 }
 
