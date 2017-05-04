@@ -2,8 +2,6 @@ package app.packages.controllers;
 
 import app.packages.domain.User;
 import app.packages.service.UserDaoService;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,39 +91,11 @@ public class UserController {
             return "redirect:/User/UserList";
         }
     
-        @RequestMapping(value = "/LoginUser", method = RequestMethod.GET)
-        public String loginFormUserInit(Model model){
-
-            model.addAttribute("LoginFormUser", new User());
-
-            return "LoginUser";
-        }
-
-        @RequestMapping(value = "/LoginUser", method = RequestMethod.POST)
-        public String loginFormUserLog(@ModelAttribute("LoginFormUser") @Valid User user,
-                                        BindingResult result, HttpServletRequest httpRequest){
-          
-            if(result.hasErrors()){   //jesli Validacja zwroci problem
-                return "LoginUser";
-            }
-            
-            if(result.getSuppressedFields().length > 0){  //sprawdzenie czy dodano tylko pola zgodne z binderem
-                throw new RuntimeException("Proba wiazania niedozwolonych pol: "
-                                            + StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
-            }
-                  
-            userDaoService.addUser(user);
-            return "redirect:/";
-        }
-    
         @InitBinder
         public void initialiseBinder(WebDataBinder binder){
             
             binder.setAllowedFields("id", "firstName", "lastName");
         }
-    
+        
+       
 }
-
-
-
-
