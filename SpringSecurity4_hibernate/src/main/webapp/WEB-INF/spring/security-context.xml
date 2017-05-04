@@ -24,7 +24,7 @@
         <logout logout-success-url="/secLogout" invalidate-session="true" logout-url="/logout" />
       
     </http>
-  
+    <!-- 
     <authentication-manager >
         <authentication-provider>
             <user-service>
@@ -34,6 +34,14 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>
+       -->
+  
+
+    <authentication-manager>
+	<authentication-provider user-service-ref="loginSecurityService" />
+    </authentication-manager>
+ 
+    
       
      
 </beans:beans>

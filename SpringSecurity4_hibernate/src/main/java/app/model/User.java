@@ -1,4 +1,4 @@
-package app.packages.model;
+package app.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -88,6 +88,14 @@ public class User implements Serializable{
 
     public void setUserRole(Set<UserRole> userRole) {
         this.userRole = userRole;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
     
     
