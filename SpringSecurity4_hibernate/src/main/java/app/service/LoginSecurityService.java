@@ -32,7 +32,8 @@ public class LoginSecurityService implements  UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		 app.model.User user = userDao.findByUserName(username);
+		
+            app.model.User user = userDao.findByUserName(username);
 
 		if (user == null) {
 			throw new UsernameNotFoundException("Invalid username or password");
@@ -41,15 +42,16 @@ public class LoginSecurityService implements  UserDetailsService {
 				true, true, true, getAuthorities(user));
 	}
 
-	private List<GrantedAuthority> getAuthorities(app.model.User user) {
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+    private List<GrantedAuthority> getAuthorities(app.model.User user) {
+            
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-		for (UserRole role : user.getUserRole()) {
-			authorities.add(new SimpleGrantedAuthority(role.getRole()));
-		}
-		return authorities;
-	}
-
+        for (UserRole role : user.getUserRole()) {
+		 authorities.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+        
+        return authorities;
+    }
 
     public UserDao getUserDao() {
         return userDao;

@@ -35,6 +35,10 @@ public class User implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
+    public User(){
+        
+    }
+    
     public User(String username, String password, boolean enabled, boolean locked) {
 	this.username = username;
 	this.password = password;
