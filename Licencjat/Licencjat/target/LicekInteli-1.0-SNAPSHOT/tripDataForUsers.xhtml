@@ -1,0 +1,278 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content" >
+
+        <style type="text/css" >
+            .ui-datalist{
+                /* width: 60%;*/
+
+            }
+            .ui-datalist-content{
+
+                background:none!important;
+                border: none !important;
+            }
+            .ui-datalist-data{
+
+            }
+            .ui-datalist-item{
+                display: block!important;
+
+                margin-bottom: 9px!important;
+                /*  padding-top: 5px!important;
+                 padding-bottom: 5px!important;
+                 padding-left: 3px!important;
+                           border: solid 2px #666666!important;
+                 border-radius: 6px!important;
+                 background: url('./resources/images/whiteBg/white80.png')!important;*/
+            }
+            .ui-datalist-item:hover{
+                display: block!important;
+
+                /*   margin-bottom: 8px!important;
+                  padding-top: 5px!important;
+                  padding-bottom: 5px!important;
+                  padding-left: 3px!important;
+                           border: solid 2px #ff6600!important;
+                  border-radius: 6px!important;
+                background: white!important;*/
+            }
+
+            .opcjeWycieczki{
+
+                font-size: 14px!important;
+                text-decoration: none!important;
+                font-weight: bold!important;
+
+            }
+            .opcjeWycieczki:hover{
+
+                font-size: 14px!important;
+                text-decoration: none!important;
+                font-weight: bold!important;
+                color: #ffffff!important;
+            }
+
+            .divDataList{
+                /* border: solid 2px #989898*/
+            }
+            .divDataList:hover{
+                /* border: solid 2px #ff6600;*/
+            }
+
+            .blinkDiv{
+
+            }
+            .blinkDiv:hover{
+                background: url('./resources/images/blackBg/black30.png')!important;
+            }
+
+            .SortOptions{
+                color: #6699ff!important;
+                font-size: 14px!important;
+                font-family: consola!important;
+                text-decoration: none!important;
+                font-weight: 600!important;
+                margin-left: 6px!important;
+                padding-left: 8px!important;
+                padding-right: 8px!important;
+                text-shadow: none!important;
+            }
+
+            .SortOptions:hover {
+                color: #ff9900!important;
+                font-size: 14px!important;
+                font-family: consola!important;
+                text-decoration: none!important;
+                font-weight: 600!important;
+                margin-left: 6px!important;
+                padding-left: 8px!important;
+                padding-right: 8px!important;
+                text-shadow: none!important;
+            }
+
+            .SortOptionsFreeSpace{
+                color: #009900!important;
+                font-size: 14px!important;
+                font-family: consola!important;
+                text-decoration: none!important;
+                font-weight: 600!important;
+                margin-left: 6px!important;
+                padding-left: 8px!important;
+                padding-right: 8px!important;
+                text-shadow: none!important;
+            }
+
+            .SortOptionsFreeSpace:hover {
+                color: #ff9900!important;
+                font-size: 14px!important;
+                font-family: consola!important;
+                text-decoration: none!important;
+                font-weight: 600!important;
+                margin-left: 6px!important;
+                padding-left: 8px!important;
+                padding-right: 8px!important;
+                text-shadow: none!important;
+            }
+
+            .inputSearch{
+                background: url("./resources/images/whiteBg/white10.png")!important;
+                border: solid 1px #0066E3!important;
+                font-size: 14px!important;
+                box-shadow: none!important;
+                color: #ffffff!important;
+            }
+
+
+            .inputSearch:focus{
+                background: url("./resources/images/whiteBg/white10.png")!important;
+                border: solid 1px #3399ff!important;
+                font-size: 14px!important;
+                box-shadow: none!important;
+                color: #ffffff!important;
+            }
+
+        </style>
+        
+        <div align="center">  
+                   
+            <h:form id="tripDataFormforUsers">
+
+                <p:growl id="listaWGrowlforUsers" />
+
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+
+                    <p:outputLabel value="Lista wycieczek" style="color: #3399ff; font-size: 14px;; font-weight: 600;" />
+                    <p:outputLabel id="sort2" value="Klucz sortowania " style="color: #3399ff; font-size: 14px;; font-weight: 500; margin-left: 15px" />
+                    <p:outputLabel id="szukaj2" value="Wyszukaj wycieczke " style="color: #3399ff; font-size: 14px;; font-weight: 500; margin-left: 15px" />
+
+                    <p:overlayPanel widgetVar="sortowaniePanel2" for="sort2" showEffect="clip" hideEffect="clip" class="ui-overlaypanel"
+                                    style=" background: url('./resources/images/blackBg/black80.png');
+                                       /*border-radius: 1px;*/
+                                       padding-top: 10px!important;
+                                       padding-bottom: 10px;
+                                       padding-left: 0px!important;
+                                       padding-right: 0px!important;
+                                       border: none; ">
+
+                        <h:panelGrid columns="1">
+
+                            <h:panelGroup>
+                                <p:outputLabel value="Wybierz klucz sortowania" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " />
+
+                                <br/>
+                            </h:panelGroup>
+
+                            <p:commandLink value="Brak" class="SortOptions" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.LoadTripList}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Nazwa wycieczki" class="SortOptions" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.getOrderedTripList('nazwa')}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Miejsce docelow" class="SortOptions" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.getOrderedTripList('mscDocelowe')}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Koszt wycieczki" class="SortOptions" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.getOrderedTripList('koszt')}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Wolne miejsca" class="SortOptionsFreeSpace" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.getFreeSpaceList()}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Cel podrózy" class="SortOptions" onclick="PF('sortowaniePanel2').hide();" action="#{ListOfTrips.getOrderedTripList('celPodrozy')}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+                            <p:commandLink value="Typ transportu" class="SortOptions" onclick="PF('sortowaniePanel2').hide();"  action="#{ListOfTrips.getOrderedTripList('typTransportu')}" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+
+                        </h:panelGrid>
+                    </p:overlayPanel>
+
+
+                    <p:overlayPanel widgetVar="szukajTripPanel2" for="szukaj2" showEffect="clip" hideEffect="clip" class="ui-overlaypanel"
+                                    style=" background: url('./resources/images/blackBg/black80.png');
+                                       /*border-radius: 1px;*/
+                                       padding-top: 10px!important;
+                                       padding-bottom: 10px;
+                                       padding-left: 0px!important;
+                                       padding-right: 0px!important;
+                                       border: none; ">
+
+                        <h:panelGrid columns="1">
+
+                            <h:panelGroup>
+                                <p:outputLabel value="Wpisz klucz wyszukiwania" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " />
+
+                                <br/>
+                            </h:panelGroup>
+
+                            <p:inputText value="#{ListOfTrips.searchValue}" class="inputSearch" />
+                            <p:commandButton value="Szukaj" action="#{ListOfTrips.search()}" onclick="PF('szukajTripPanel').hide();" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers" />
+
+                        </h:panelGrid>
+                    </p:overlayPanel>
+
+                </div>
+
+                <p:dataList id="tripdataforUsersListID" value="#{ListOfTrips.tripList}" var="var" type="definition"  >
+                    <div align="center" style="padding: 3px; margin-left: 22%; margin-right: 20%"  class="divDataList" >
+
+                        <div align="left" style="display: inline-block; position: relative; width: 30%; padding-left: 20px; padding-top: 10px;
+                                                background-color: #599bb3; height: 220px; border-bottom-left-radius: 5px; border-top-left-radius: 5px" class="blinkDiv" >
+
+                            <p:outputLabel value="Wycieczka:" style="color: #ffffff; font-size: 130%; font-weight: 600" /><br/><br/>
+                            <p:outputLabel value="Nazwa: #{var.nazwa}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Założyciel: #{ListOfTrips.getUser(var.ownerId)}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Miejsce docelowe:  #{var.mscDocelowe} " style="font-size: 100%; font-weight: 600; color: #ffffff;  "  /><br/>
+                            <p:outputLabel value="Głowny cel: #{var.celPodrozy}" style="font-size: 100%; font-weight: 600; color: #ffffff;  "  /><br/>
+                            <p:outputLabel value="Transport:  #{var.typTransportu}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Czas trwania:  #{var.czasPodrozy} dni" style="font-size: 100%; font-weight: 600; color: #ffffff;  "  /><br/>
+                            <p:outputLabel value="Szacowany koszt:  #{var.koszt} zł" style="font-size: 100%; font-weight: 600; color: #ffffff;  "  /><br/>
+
+                            <br/>
+                            <p:commandLink value="Zobacz profil założyciela: #{ListOfTrips.getUser(var.ownerId)}" style="color: chartreuse"  action="#{profilViewController.loadProfil(var.ownerId)}" class="opcjeWycieczki" />
+                            <br/>
+                            <p:commandLink value="Pokaż trase wycieczki" action="#{gmapOdwzorowanieDanych.DownloadTrip(var.id)}" style="color: chartreuse" ajax="false" class="opcjeWycieczki"/>
+                            <br/>
+                            <!--  opcja tylko dla admina -->
+                            <p:commandLink value="Usuń wycieczke" action="#{panelAdmina.deleteTrip(var)}" rendered="#{userController.czyAdmin}" style="color: chartreuse" update="tripdataforUsersListID tripDataFormforUsers:listaWGrowlforUsers"  class="opcjeWycieczki" />
+
+
+                        </div>
+
+                        <div align="left" style="display: inline-block; position: relative; vertical-align: top; padding-left: 20px; padding-top: 10px; width: 30%;
+                                            background-color: #3399ff; height: 220px" class="blinkDiv" >
+
+
+
+                            <p:outputLabel value="Uczestnicy:" style="color: #ffffff; font-size: 130%; font-weight: 600" /><br/><br/>
+                            <p:outputLabel value="Wiek od  #{var.minWiek} do #{var.maxWiek} " style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Płeć:  #{var.plec}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Wymogi:  #{var.wymogi}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Zastrzeżenia:  #{var.zastrzezenia}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+                            <p:outputLabel value="Zapisane osoby: #{getUczestnicy.getUsersList(var.id)}" style="font-size: 100%; font-weight: 600; color: #ffffff;  " /><br/>
+
+                            <br/>
+
+                        </div>
+
+                        <div align="center" style="display: inline-block; position: relative; vertical-align: top; padding-top: 10px; width: 30%;;
+                                    background-color: #036fab; height: 220px; border-bottom-right-radius: 5px; border-top-right-radius: 5px" class="blinkDiv" >
+
+                            <div style="margin-top: 30px">
+
+
+                                <p:outputLabel value="Data rozpoczęcia: " style="font-size: 110%; color: white; "/><br/>
+                                <p:outputLabel value="#{var.startDate}" style="font-size: 140%;  color: white; " />
+                                <br/><br/>
+                                <p:outputLabel value="Wolne miejsca: " style="font-size: 110%;  color: white;  " /><br/>
+                                <p:outputLabel value="#{var.zapisaneOsoby}/#{var.limitOsob}" style="font-size: 150%;  color: white; " />
+                                <br/><br/>
+
+                                <p:commandLink value="Dołącz jako: #{userController.zalogowanyLogin}" action="#{joinToTrip.joinToTrip(var.id)}" update="tripDataFormforUsers:listaWGrowlforUsers"
+                                               rendered="#{userController.czyZalogowany}" style="color: chartreuse" class="opcjeWycieczki"/>
+
+                                <br/><br/>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </p:dataList> 
+                <br/><br/>
+            </h:form>        
+        </div>   
+    </ui:define>
+</ui:composition>

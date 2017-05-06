@@ -1,0 +1,245 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssNowaWycieczka.css" />
+        <script type="text/javascript" src="./resources/js/addTripController.js" /> 
+
+   
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                    <p:outputLabel value="Kreator nowej wycieczki" style="color: #3399ff; font-size: 15px;; font-weight: 600;" />
+                </div>
+            </div>
+            
+            <h:panelGroup rendered="#{!userController.czyZalogowany}" >
+                <div style="background: url('./resources/images/blueBg/blue50.png');">
+                    <div align="center" style="background: url('./resources/images/blackBg/black40.png');margin-top: 20vh;  padding-top: 1vh; padding-bottom:  1vh;">
+                        <p:outputLabel value="Nie jesteś zalogowany, zaloguj się lub założ nowe konto!"  style="color: #ff3333; font-size: 16px;; font-weight: 600;" />
+                    </div>
+                </div>
+            </h:panelGroup>
+            
+            
+        <h:panelGroup rendered="#{userController.czyZalogowany}" >
+        <h:form id="newTripForm">
+            <p:growl id="growl1" />  
+                             
+            <div align="center"  
+                 style="background: url('./resources/images/whiteBg/white80.png');">
+                
+                <div align="center" style="width: 100%; ">
+                    <div id="wizard1" 
+                         style="float:left; width: 33%; color:#cccccc; height: 23px; padding-top: 5px; " >
+                         Podstawowe inforamcje
+                    </div>
+                    <div id="wizard2" 
+                         style="float:left; width: 34%; color:#cccccc; height: 23px; padding-top: 5px; " >
+                         Wymogi i zastrzeżenia
+                    </div>
+                    <div id="wizard3" 
+                         style="float:left; width: 33%; color:#cccccc; height: 23px; padding-top: 5px; " >
+                         Czas i miejsce 
+                    </div>
+                </div>
+                
+                <div style="background: url('./resources/images/blackBg/black30.png'); height: 28px" >
+                
+                </div>
+
+                <div id="content1" style="" > 
+                       
+                    <br/><br/><br/>
+                        <h:panelGrid columns="1"  >
+                
+                            <p:outputLabel value="Nazwa" style="color: #333333; font-family: monospace; font-weight: 600" />
+                            <p:inputText id="nazwaWycieczki" value="#{nowaWycieczka.newTrip.nazwa}" requiredMessage="Pole wymagane" required="true" styleClass="inputTextNewTrip" />
+                            <h:message for="nazwaWycieczki" style="color: red" />
+                            
+                    
+                            <p:outputLabel value="Miejsce docelowe" style="color: #333333; font-family: monospace; font-weight: 600" />
+                            <p:inputText id="miejsceWycieczki" value="#{nowaWycieczka.newTrip.mscDocelowe}" requiredMessage="Pole wymagane" required="true" styleClass="inputTextNewTrip" />
+                            <h:message for="miejsceWycieczki" style="color: red" />
+
+                            <p:outputLabel value=" Główny rodzaj Transportu" style="color: #333333; font-family: monospace; font-weight: 600" />
+                            <p:selectOneMenu id="selectTyp" value="#{nowaWycieczka.newTrip.typTransportu}" requiredMessage="Pole wymagane" required="true" var="c" >
+                                <p:ajax listener="#{nowaWycieczka.wyborTypuTransportu}"  update="growl1 i1" event="change"/>
+                                <f:selectItem itemLabel="Rodzaj transportu" itemValue="" />
+                                <f:selectItems value="#{nowaWycieczka.listaTypTransportu}" itemLabel="#{typ}"  itemValue="#{typ}" var="typ" />
+
+                                <p:column>
+                                    <h:outputText value="#{c}" styleClass="oneMenutext" />
+                                </p:column>
+                            </p:selectOneMenu>
+                            <h:message for="selectTyp" style="color: red" />
+
+                            <h:panelGroup id="i1">
+                                <p:outputLabel value="Inny typ" rendered="#{nowaWycieczka.innyTyp}" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                                <p:inputText id="innytyp"  rendered="#{nowaWycieczka.innyTyp}" value="#{nowaWycieczka.newTrip.typTransportu}" styleClass="inputTextNewTrip"/>  
+                            </h:panelGroup>
+                                
+                            <p:outputLabel value="Główny cel podróży" style="color: #333333; font-family: monospace; font-weight: 600" />
+                            <p:selectOneMenu id="selectCel" value="#{nowaWycieczka.newTrip.celPodrozy}" requiredMessage="Pole wymagane" required="true"  var="c"  >
+                                
+                                <p:ajax listener="#{nowaWycieczka.wyborCeluPodrozy()}"  update="growl1 i2" event="change"/>
+                                <f:selectItem itemLabel="Cel Podróży" itemValue="" />
+                                <f:selectItems value="#{nowaWycieczka.listCelPodrozy}" itemLabel="#{cel}" itemValue="#{cel}" var="cel" />
+                       
+                                <p:column>
+                                    <h:outputText value="#{c}" styleClass="oneMenutext" />
+                                </p:column>
+                            </p:selectOneMenu>
+                            <h:message for="selectCel" style="color: red" />
+                     
+                            <h:panelGroup id="i2">
+                                <p:outputLabel value="Inny cel" rendered="#{nowaWycieczka.innyCel}" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                                <p:inputText id="innycel"  rendered="#{nowaWycieczka.innyCel}" value="#{nowaWycieczka.newTrip.celPodrozy}" styleClass="inputTextNewTrip"/>  
+                            </h:panelGroup>                                
+                            
+                        </h:panelGrid>       
+                    </div>
+
+                    <div id="content2" style="display: none; " >
+                        
+                       <br/><br/><br/>
+                        
+                        <h:panelGrid columns="1" >
+
+                            <p:outputLabel value="Szacowany koszt podróży (w zł)"  style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                            <p:inputText id="koszt"  value="#{nowaWycieczka.newTrip.koszt}" styleClass="inputTextNewTrip"/>
+                           
+                            
+                            <p:outputLabel value="Wymagane cechy, umiejetnosci" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                            <p:inputText id="cechy" value="#{nowaWycieczka.newTrip.wymogi}"  styleClass="inputTextNewTrip"/>
+                                                       
+                         
+                            <p:outputLabel value="Uwagi, zastrzerzenia do osob" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                            <p:inputText id="uwagi" value="#{nowaWycieczka.newTrip.zastrzezenia}"  styleClass="inputTextNewTrip"/>
+                          
+
+                            <p:outputLabel value="Prefernecje płci:" style="margin-left: 3px;color: #333333; font-family: monospace; font-weight: 600" />
+                            <h:selectOneRadio value="#{nowaWycieczka.newTrip.plec}"
+                                                  style="color: #333333; font-family: monospace; font-weight: 600">
+                                
+                                <f:selectItem itemLabel="Kobiety" itemValue="Kobiety" />
+                                <f:selectItem itemLabel="Mężczyźni" itemValue="Mężczyźni" />
+                                <f:selectItem itemLabel="Bez znaczenia" itemValue="Bez znaczenia" />
+                            </h:selectOneRadio>
+                            
+                            
+                          
+                            <h:panelGrid columns="1" style="padding-left: 2px;" >
+                                <h:panelGroup >
+                                    <h:outputText id="output" value="Maskymalnie #{nowaWycieczka.newTrip.limitOsob} osób" 
+                                                  style="color: #333333; font-family: monospace; font-weight: 600; font-size: 14px" /> 
+                                    
+                                    <p:slider for="txt2" display="output" displayTemplate="Maskymalnie {value} osób" class="ui-slider"  />
+                                    <h:inputHidden id="txt2" value="#{nowaWycieczka.newTrip.limitOsob}" />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                                
+                            <p:spacer />
+                            <h:panelGrid columns="1" style="padding-left: 2px;">
+                                <h:panelGroup >
+                                    <h:outputText id="displayRange" value="Przedział wiekowy: od #{nowaWycieczka.newTrip.minWiek} do #{nowaWycieczka.newTrip.maxWiek}" 
+                                                  style="color: #333333; font-family: monospace; font-weight: 600; font-size: 14px" />      
+                                    
+                                    <p:slider for="wiekmin, wiekmax" display="displayRange" range="true" displayTemplate="Przedział wiekowy: od {min} do {max} lat" 
+                                              class="ui-slider" />                 
+                                    <h:inputHidden id="wiekmin" value="#{nowaWycieczka.newTrip.minWiek}" />
+                                    <h:inputHidden id="wiekmax" value="#{nowaWycieczka.newTrip.maxWiek}" />                   
+                                </h:panelGroup>
+                            </h:panelGrid>
+                       
+
+                        </h:panelGrid>    
+                    </div>
+                    <div id="content3"  style="display: none; "> 
+                        
+              <br/><br/><br/>
+                                                         
+                        <h:panelGrid columns="1"  >
+                           
+                            <p:outputLabel value="Data rozpoczęcia wycieczki" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                            <p:calendar id="mask2" value="#{nowaWycieczka.newTrip.startDate}" navigator="true" pattern="dd/MM/yyyy" mask="true" locale="pl" 
+                                     requiredMessage="Podaj datę podróży" required="true"  styleClass="kalendarz2" />
+                            <h:message for="mask2" style="color: red" />
+                            
+                            <p:outputLabel value="Przybliżony dystans(dziennie) do przebycia (w km)" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                            <p:inputText id="dystans" value="#{nowaWycieczka.newTrip.dystans}" styleClass="inputTextNewTrip"/>
+                           
+                            <h:panelGrid columns="1" style="padding-left: 2px;" >
+                                <h:panelGroup >
+                                    <h:outputText id="output2" value="Czas trwania podróży: #{nowaWycieczka.newTrip.czasPodrozy} dni"
+                                                  style="color: #333333; font-family: monospace; font-weight: 600; font-size: 14px" />
+                                
+                                    <h:inputHidden id="txt3" value="#{nowaWycieczka.newTrip.czasPodrozy}" />
+                                    <p:slider for="txt3" display="output2" displayTemplate="Czas trwania podróży: {value} dni" class="ui-slider"  />
+                                </h:panelGroup>
+                            </h:panelGrid>
+                            
+
+                            <f:facet name="footer">
+                                <div align="center" >
+                                    <br/>
+                                    <p:commandLink value="Wyznacz trase podróży(zalecane)" ajax="false" action="gmapWyznaczanieTrasy.xhtml" class="TworzTraseButton" />
+                                    <br/>
+                                    <p:outputLabel value="Lub" style="color: #333333; font-family: monospace; font-weight: 600; display: block" />
+                                    <br/>
+                                    <p:commandLink value="Zapisz bez wyznaczania trasy" action="#{nowaWycieczka.saveData()}" ajax="false" class="zapiszWycieczkeButton" />
+                                    <p:graphicImage id="loadingZapisWycieczki" value="./resources/images/spinners/loading.gif" height="15" style="border-radius:3px; width: 40vh; display: none"  />         
+              
+                                </div> 
+                            </f:facet>                            
+                                
+                                
+                            </h:panelGrid> 
+                    </div>
+                
+        <br/><br/>
+            <div align="center" style="height: 23px; background: none; margin-left: 22%; margin-right: 22%;
+                 border-radius: 5px">
+         
+                <div  style="float: left; background-color: #666666; width: 40%; border-radius: 1px; "> 
+                    <!--    <p:commandLink value="Prev" styleClass="a4" /> -->
+                    <p:outputLabel id="prev" value="Cofnij" 
+                                   style="display: inline-block; width: 100%; height: 20px; font-weight: 600; 
+                                   color: #cccccc; font-family: monospace; font-size: 16px; padding-bottom: 3px; padding-top: 3px" />
+                </div>
+                
+                <div style="float: left; width: 20%; background: none; ">
+                     
+                </div>
+                
+                <div style="float: right; background-color: #666666; width: 40%;  border-radius: 1px; " > 
+                    
+                   <!--     <p:commandLink value="Next" styleClass="a4" /> -->
+                    <p:outputLabel id="next"  value="Dalej" 
+                              style="display: inline-block; width: 100%; height: 20px; font-weight: 600; 
+                              color: #cccccc; font-family: monospace; font-size: 16px; padding-bottom: 3px; padding-top: 3px" />
+                </div>
+
+            </div>
+            
+            <br/><br/>
+            
+            </div>  <!--glowny div -->
+        </h:form>     
+        
+        </h:panelGroup>
+        
+    </ui:define>
+    
+    
+     <ui:define name="bottom"> 
+         <h:form>
+
+         </h:form>
+     </ui:define>  
+    
+    
+</ui:composition>

@@ -1,0 +1,42 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <h:form id="OdwzorowanieForm">
+
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom: 0.7vh;">
+                    <p:outputLabel value="Trasa Wycieczki" style="color: #3399ff; font-size: 15px;; font-weight: 600;" />
+                </div>
+            </div>
+
+            <div>
+                <div style=" width: 100%"> 
+                    <p:gmap id="GmapOdwzorowanie"
+                        widgetVar="mapOdwzorowanie"
+                        fitBounds="true"
+                        center="#{gmapOdwzorowanieDanych.centerPosition}" 
+                        zoom="#{gmapOdwzorowanieDanych.zoom}" 
+                        type="#{gmapOdwzorowanieDanych.mapType}" 
+                     
+                        style="width:100%; height:83vh;">
+                    </p:gmap> 
+                </div>
+            </div>
+
+        
+        
+            <h:inputHidden id="daneDoOdwzorowania" value="#{gmapOdwzorowanieDanych.jsonData}" />
+        </h:form>  
+        <h:outputScript library="js" name="gmapOdwzorowanieDanych.js"></h:outputScript>
+    </ui:define>
+    
+    <ui:define name="bottom">    
+
+    </ui:define>
+    
+</ui:composition>

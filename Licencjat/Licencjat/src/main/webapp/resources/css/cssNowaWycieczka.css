@@ -1,0 +1,203 @@
+
+.inputTextNewTrip{
+    background: url('../images/blackBg/black10.png')!important;
+    width: 56vh!important; 
+    border-radius:2px!important;
+    border: solid 2px #666666!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+    color: #000000!important;
+}
+.inputTextNewTrip:focus, .inputTextNewTrip:hover{
+    background: url('../images/blackBg/black10.png')!important;
+    width: 56vh!important; 
+    border-radius:2px!important;
+    border: solid 2px #3399ff!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+    color: #000000!important;
+}
+
+.outputLabelNewTrip{
+    background: url('../images/whiteBg/white60.png');     
+    width: 50vh; 
+    height: 22px;      
+    display: block; 
+    border-radius:2px; 
+    text-align: center; 
+    padding-top: 5px; 
+    font-size: 14px;
+    border: solid 1px #599bb3;
+}
+
+.kalendarz2 .ui-inputfield  {  /*nadpisanie wszytkich inputfield (przez kalendaz) */
+    background: url('../images/blackBg/black10.png')!important;
+    width: 56vh!important;
+    border-radius:2px!important;
+    border: solid 2px #666666!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+.kalendarz2 .ui-inputfield:focus  {  /*nadpisanie wszytkich inputfield (przez kalendaz) */
+   background: url('../images/blackBg/black10.png')!important;
+    width: 56vh!important;
+    border-radius:2px!important;
+    border: solid 2px #3399ff!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+
+.ui-selectonemenu {
+    border-right: 9px!important;
+    width: 54vh!important;
+    color:#000000!important;
+    box-shadow: none!important;
+    border: solid 2px #666666!important;
+    background: none!important;  
+    
+}
+
+.ui-selectonemenu:focus, .ui-selectonemenu:hover{
+    
+    border-right: 9px!important;
+    width: 54vh!important;
+    color:#000000!important;
+    box-shadow: none!important;
+    border: solid 2px #3399ff!important;
+    background: none!important;
+}
+
+.ui-selectonemenu-label {  /*czesc pierwszoplanowa */
+    
+   color:#000000!important;
+   width: 54vh!important;
+   background: url('../images/blackBg/black10.png')!important;
+
+   font-size: 14px!important;
+   border: none!important;
+   box-shadow: none!important;
+   border-radius: 3px!important;
+} 
+
+.ui-selectonemenu-trigger{
+   
+    /*background: #999999!important;*/
+}
+
+.ui-selectonemenu-items {
+    background: none!important;  /*tło elementow w select one menu */
+
+}
+
+.ui-selectonemenu-item {
+    background: url('../images/blackBg/black70.png')!important;  /*tło elementow w select one menu */
+    border: solid 1px #333333 !important;
+    color: white!important;
+}
+
+.ui-selectonemenu-item.ui-state-hover {
+    background: url('../images/blackBg/black85.png')!important;  /*tło elementow w select one menu */
+    color: white!important;
+}
+
+.ui-selectonemenu-item.ui-state-highlight {/*header*/
+    
+    background: #0066E3!important;
+    font-weight: 400!important;
+}
+
+
+.ui-slider .ui-widget-header {
+    background: #cccccc!important;
+ 
+}
+.ui-slider .ui-slider-handle{
+    width:5px!important; 
+    height:20px!important;
+    position:absolute!important;
+    top:-4px!important;
+    background: #cccccc!important;
+    border:solid 2px #666666!important;                 
+}  
+.ui-slider {   
+    width: 56vh!important;
+    border-radius: 3px!important;
+    height: 13px!important;
+    background:  #3399ff!important;
+    border: solid 0.7px #333333!important;
+}
+
+.ui-slider .ui-widget-header {
+
+}
+
+.ui-slider .ui-slider-handle{
+              
+}
+
+.ui-slider {   /*pasek slidera*/
+    width: 56vh!important;
+ 
+}
+
+.TworzTraseButton{
+background: url('../images/blueBg/blue90.png');
+   border: solid 1px #cccccc!important; 
+   border-radius: 2px!important;
+    color: #cccccc!important;
+    font-size: 15px!important;
+    font-weight: 600!important;
+    text-decoration: none!important;
+    display: block!important;
+    padding-top: 1vh!important;
+    padding-bottom: 1vh!important;
+    border-radius: 6px!important;
+    border:solid 2px #333333!important;
+     
+}
+
+.TworzTraseButton:hover{
+       border: solid 1px #cccccc!important; 
+   border-radius: 2px!important;
+background: url('../images/blueBg/blue90.png');
+    color: #ff9900!important;
+    font-size: 15px!important;
+    font-weight: 600!important;
+    text-decoration: none!important;
+    display: block!important;
+    padding-top: 1vh!important;
+    padding-bottom: 1vh!important;
+    border-radius: 6px!important;
+        border:solid 2px #333333!important;
+}
+
+.zapiszWycieczkeButton{
+background: url('../images/blueBg/blue90.png');
+   border: solid 1px #cccccc!important; 
+   border-radius: 2px!important;
+    color: #cccccc!important;
+    font-size: 15px!important;
+    font-weight: 600!important;
+    text-decoration: none!important;
+    display: block!important;
+    padding-top: 1vh!important;
+    padding-bottom: 1vh!important;
+        border-radius: 6px!important;
+                border:solid 2px #333333!important;
+     
+}
+
+.zapiszWycieczkeButton:hover{
+    background: url('../images/blueBg/blue90.png');
+    border-radius: 2px!important;
+    background: #0066E3!important;
+    color: #ff9900!important;
+    font-size: 15px!important;
+    font-weight: 600!important;
+    text-decoration: none!important;
+    display: block!important;
+    padding-top: 1vh!important;
+    padding-bottom: 1vh!important;
+    border-radius: 6px!important;
+    border:solid 2px #333333!important;
+}

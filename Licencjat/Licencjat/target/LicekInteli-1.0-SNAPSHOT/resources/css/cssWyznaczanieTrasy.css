@@ -1,0 +1,227 @@
+
+@font-face {
+    font-family: consola;
+    src: url(../fonts/consola.ttf) format("truetype");
+}
+/*********************okno dialogowe mapy*************************/
+.ui-selectonemenu {
+    border-right: 9px!important;
+    width: 50%!important;
+    border: solid 2px #666666!important;
+    border-radius:5px!important;
+}
+
+.ui-selectonemenu-label {  /*czesc pierwszoplanowa */
+
+    border-radius: 0px!important;
+    font-size: 14px!important;
+    background: white!important;
+    border-radius:5px!important;
+}
+
+.ui-selectonemenu-trigger{
+
+}
+
+.ui-selectonemenu-item {
+    background: #999999!important;  /*tło elementow w select one menu */
+    border: solid 2px #666666 !important;
+    color: white!important;
+}
+
+.ui-selectonemenu-item.ui-state-hover {
+    background: #333333!important;  /*tło elementow w select one menu */
+    border: solid 2px #666666!important ;
+    color: white!important;
+}
+
+.ui-selectonemenu-item.ui-state-highlight {/*header*/
+
+    background: #036fab!important;
+    font-weight: 400!important;
+}
+
+.inputTextDialogOpis{
+
+    width: 40vh!important;
+    border-radius:5px!important;
+    border: solid 2px #333333!important;
+    font-size: 15px!important;
+    color: #000000!important;
+    font-family: monospace!important;
+
+}
+
+.inputTextDialogOpis:focus{
+
+    width: 40vh!important;
+    border-radius:5px!important;
+    border: solid 2px #009900!important;
+    font-size: 15px!important;
+    color: #000000!important;
+    font-family: monospace!important;
+
+}
+/*przyciski on / off  */
+.ui-inputswitch{
+    background: none!important;
+    margin-left: 20px;
+}
+.ui-inputswitch-off{
+    font-size: 14px!important;
+    font-family: monospace!important;
+    background: none!important;
+    color:#cccccc;
+}
+.ui-inputswitch-on{
+    font-size: 14px!important;
+    font-family: monospace!important;
+    background: none!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+    border: none!important;
+    color:#cccccc!important;
+}
+.ui-inputswitch-handle{
+    background: url('../images/whiteBg/white10.png')!important;
+}
+
+
+.ui-slider .ui-widget-header {
+    background: #cccccc!important;
+    /* top: -2px;*/
+}
+.ui-slider .ui-slider-handle{
+    width:5px!important;
+    height:20px!important;
+    position:absolute;
+    top:-4px!important;
+    background: #cccccc!important;
+    border:solid 2px #666666!important;
+}
+.ui-slider {   /*pasek slidera*/
+    width: 41vh!important;
+    border-radius: 3px!important;
+    height: 13px!important;
+    background:  #0066E3!important;
+
+
+    border: solid 1px #999999!important;
+}
+
+.inputTextWyszukiwanie{
+    background: url('../images/whiteBg/white20.png')!important;
+    width: 50vh!important;
+    border-radius:2px!important;
+    border: solid 1.5px #333333!important;
+    font-size: 15px!important;
+    color: #cccccc!important;
+    font-family: consola!important;
+    box-shadow: none!important;
+
+}
+.inputTextWyszukiwanie:focus{
+    background: url('../images/whiteBg/white20.png')!important;
+    width: 50vh!important;
+    border-radius:2px!important;
+    border: solid 1.5px #0066E3!important;
+    font-size: 15px!important;
+    color: #cccccc!important;
+    font-family: consola!important;
+    box-shadow: none!important;
+
+}
+
+.przyciskZapiszTrase {
+    text-shadow: 2px 2px 4px #000000!important;
+    color: #cccccc!important;
+    font-size: 17px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    display: block!important;
+}
+
+.przyciskZapiszTrase:hover {
+    text-shadow: 2px 2px 4px #000000!important;
+    background: url('../images/whiteBg/white20.png')!important;
+    color: #ff9900!important;
+    font-size: 17px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    display: block!important;
+}
+
+.mapOptions{
+    color: #6699ff;
+    font-size: 14px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    margin-left: 6px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    text-shadow: none!important;
+}
+
+.mapOptionsLayer{
+    color: #6699ff;
+    font-size: 14px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    margin-left: 6px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    text-shadow: none!important;
+}
+
+.mapOptionsLayer:hover {
+    color: #ff9900!important;
+    font-size: 14px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    margin-left: 6px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    text-shadow: none!important;
+}
+
+.TransportOptions{
+    color: #6699ff!important;
+    font-size: 14px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    margin-left: 6px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    text-shadow: none!important;
+}
+
+.TransportOptions:hover {
+    color: #ff9900!important;
+    font-size: 14px!important;
+    font-family: consola!important;
+    text-decoration: none!important;
+    font-weight: 600!important;
+    margin-left: 6px!important;
+    padding-left: 8px!important;
+    padding-right: 8px!important;
+    text-shadow: none!important;
+}
+
+/*  pasek wyszukiwania i aktualny tryb */
+.outputPaskaWyszukiwania{
+    font-size: 15px!important;
+    font-family: consola!important;
+    color: white!important;
+    font-weight: 600!important;
+}
+

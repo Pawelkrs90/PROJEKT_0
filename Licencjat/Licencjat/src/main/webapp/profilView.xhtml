@@ -1,0 +1,96 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content" >
+           
+        <h:form>
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                        <p:outputLabel value="Profil" style="color: #3399ff; font-size: 15px;; font-weight: 600;" />
+                </div>
+            </div>
+
+            <h:panelGroup >
+                <div align="" style="background:url('./resources/images/whiteBg/white80.png');">
+                
+                    <br/>
+                    
+                    <div align="" style="height: 32vh;">
+                        <div style="float: left" >
+                            <p:graphicImage value="./resources/images/profile.gif" width="90" height="120" style="margin-left: 35vw" class="shadow_box_left_bot" />
+                        </div>
+                        
+                        
+                        <div style="float: left; margin-left: 35px"  >
+                            <h:form id="profilForm">
+                            <h:panelGrid cellpadding="5" columns="2" >
+                        
+                                <p:outputLabel value="Imie: "  style="font-family: consola;font-size: 16px; font-weight: 600; color: #333333 " />
+                                <p:outputLabel value="#{profilViewController.viewUser.imie}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                                 
+                                
+                                <p:outputLabel value="Login: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333" />
+                                <p:outputLabel value="#{profilViewController.viewUser.login}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                                
+                                
+                                <p:outputLabel value="Hasło: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:outputLabel value="*******" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />       
+                                
+                                
+                                <p:outputLabel value="Email: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:outputLabel value="#{profilViewController.viewUser.email}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                                
+                                <p:outputLabel value="Data urodzenia: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:outputLabel value="#{profilViewController.viewUser.imie}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                                
+                                
+                                <p:outputLabel value="Płeć: " style="font-family: consola;font-size: 16px; font-weight: 600; color: #333333" />
+                                <p:outputLabel value="#{profilViewController.viewUser.plec}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                               
+                                
+                                <p:outputLabel value="Uprawnienia " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:outputLabel value="#{profilViewController.viewUser.uprawnienia}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+
+                            </h:panelGrid>
+                            </h:form>
+                        </div>
+                    </div>
+
+                    <br/>
+                    
+                 
+                <br/><br/><br/><br/>
+                <br/>
+                
+            </div>
+            </h:panelGroup>
+            
+            
+           <br/><br/><br/> 
+            
+            
+            
+            
+            
+        </h:form>
+
+    </ui:define>
+    
+     <ui:define name="bottom">   
+        <h:form>
+         <div align="center" style=" position:absolute; bottom:0;/*background: url('./resources/images/blueBg/blue80.png')*/; width:100%; /*border-top: solid 2px #AFAFAF*/"  >
+             <div style="/*background: url('./resources/images/blackBg/black50.png');*/">
+                <br/> 
+                <br/>
+                <br/>
+               
+            </div>
+         </div>
+        </h:form>
+     </ui:define>
+    
+</ui:composition>

@@ -1,0 +1,92 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssWyznaczanieTrasy.css" /> 
+        
+        <div style="background: url('./resources/images/blueBg/blue50.png');">
+            <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                <p:outputLabel value="Przypnij swoje ogłoszenie do mapy" style="color: #3399ff; font-size: 14px;; font-weight: 600;" />
+            </div>
+        </div>
+                
+        
+        <h:panelGroup rendered="#{!userController.czyZalogowany}" >
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');margin-top: 20vh;  padding-top: 1vh; padding-bottom:  1vh;">
+                    <p:outputLabel value="Nie jesteś zalogowany, zaloguj się lub założ nowe konto!"  style="color: #ff3333; font-size: 16px;; font-weight: 600;" />
+                </div>
+            </div>
+        </h:panelGroup>
+            
+            
+        <h:panelGroup rendered="#{userController.czyZalogowany}" >
+        <h:form id="PrzypnijSieForm"> 
+            
+             <div style=" background:url('./resources/images/blackBg/black60.png'); border-radius: 2px; margin-top: 2px; margin-left: 0px; margin-right: 0px; padding-left: 8px">   
+                    <p:outputLabel value="Wyszukaj adres: " class="outputPaskaWyszukiwania" style="margin-left: 5px" />
+                    <h:inputText id="wyszukajAdresIdPrzynijSie" value="#{gmapPrzypnijSie.adres}" class="inputTextWyszukiwanie" style="margin-top: 2px; margin-bottom: 2px;" />
+
+                    <p:commandLink id="szukajNaMapiePrzypnijSie" value="Szukaj" style="margin-left: 5px" onclick="gekodowaniePrzypnijSIe();" class="buttony" />
+                    <p:defaultCommand target="szukajNaMapiePrzypnijSie" />
+                    
+            </div>   
+            
+            <div style=" width: 100%"> 
+                <p:gmap id="GmapPrzypnijSie"
+                        widgetVar="mapPrzypnijSie"
+                        fitBounds="true"
+                        center="#{gmapPrzypnijSie.centerPosition}" 
+                        zoom="#{gmapPrzypnijSie.zoom}" 
+                        type="#{gmapPrzypnijSie.mapType}" 
+                        onPointClick="GmapClickPrzypnijSie(event);"
+                        style="width:100%; height:75vh; margin-top:4px;">
+                </p:gmap> 
+            </div>
+
+        </h:form>  
+        </h:panelGroup>
+        
+        <p:dialog widgetVar="przypnijSieDialog" header="Uzupełnij opis" showEffect="fade" closable="false"  modal="true" resizable="false"
+              style="background: #cccccc; 
+                     opacity: 1.0;
+                     border: solid 1px #666666;
+                     border-radius: 9px;" >
+            
+        <h:form id="przypnijSieDialogForm" prependId="false">
+            
+                <div  >
+                    
+                    <h:panelGrid columns="1">
+
+                        <p:inputTextarea id="przypnijSieDialogOpis" value="#{gmapPrzypnijSie.opis}" class="inputTextDialogOpis"  />
+                        <p:watermark value="Opis" for="przypnijSieDialogOpis" />
+                        
+                        <f:facet name="footer" >
+                            <p:commandButton value="Zatwierdz" actionListener="#{gmapPrzypnijSie.save()}" onclick="przypnijSieAcceptButton()" style="font-size: 14px; width:49%; "/>
+                            <p:commandButton value="Anuluj" onclick="przypnijSieCancelButton();" style="font-size: 14px; width: 49%;  " />
+                        </f:facet>
+                    </h:panelGrid>
+                    
+                    
+                    <h:inputHidden id="przypnijSieLat" value="#{gmapPrzypnijSie.lat}" />
+                    <h:inputHidden id="przypnijSieLng" value="#{gmapPrzypnijSie.lng}" />
+                    <h:inputHidden id="userIdPrzypnijSie" value="#{gmapPrzypnijSie.user.id}" />
+                    <h:inputHidden id="userLoginPrzypnijSie" value="#{gmapPrzypnijSie.user.login}" />
+                </div>
+                       
+        </h:form>
+    </p:dialog>
+        
+        <h:outputScript library="js" name="gmapPrzypnijSie.js"></h:outputScript>
+    </ui:define>
+    
+    <ui:define name="bottom">    
+
+    </ui:define>
+    
+</ui:composition>

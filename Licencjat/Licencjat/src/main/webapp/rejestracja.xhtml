@@ -1,0 +1,151 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./Dekorator.xhtml">
+    
+    <ui:define name="content">
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssRejestracja.css" />        
+
+
+        <h:form id="registryForm">
+
+            <p:growl id="registryGrowl" />
+
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 1vh; padding-bottom:  1vh;">
+                        <p:outputLabel value="Rejestracja użytkownika" style="color: #3399ff; font-size: 16px;; font-weight: 600;" />
+                </div>
+            </div>
+            
+            <div align="center"  style="background: url('./resources/images/whiteBg/white80.png'); ">
+                
+                <br/>
+                
+                    <h:panelGrid columns="1"  >
+                               
+                    <p:outputLabel value="Imie:" style="color: #333333;font-size: 15px; font-family: consola; font-weight: 500" />
+                    <p:inputText id="registryimie" value="#{registrationController.user.imie}" maxlength="10"  required="true" requiredMessage="Pole wymagane" styleClass="inputTextRejestracja" />
+                    <h:message for="registryimie" style="color: #D20005" />
+                    
+               
+                    <p:outputLabel value="Login:" style="color: #333333; font-size: 15px; font-family: consola; font-weight: 500" />
+                    <p:inputText id="registrylogin" value="#{registrationController.user.login}" maxlength="10" validatorMessage="Maksymalnie 10 znaków" required="true" requiredMessage="Pole wymagane" styleClass="inputTextRejestracja" />
+                    <h:message for="registrylogin" style="color: #D20005" />
+             
+                                  
+                    <p:outputLabel value="Hasło:" style="color: #333333; font-size: 15px; font-family: consola; font-weight: 500" />
+                    <p:password id="registryhaslo"  value="#{registrationController.user.haslo}" maxlength="10" validatorMessage="Maksymalnie 10 znaków" required="true" requiredMessage="Pole wymagane"  styleClass="inputTextRejestracja" />
+                    <h:message for="registryhaslo" style="color: #D20005" />
+                    
+                    
+                    <p:outputLabel value="Powtórz hasło:" style="color: #333333; font-size: 15px; font-family: consola; font-weight: 500" />
+                    <p:password id="registryhaslo2" value="#{registrationController.passwordForCheck}" maxlength="10" validatorMessage="Maksymalnie 10 znaków" required="true" requiredMessage="Pole wymagane"  styleClass="inputTextRejestracja" />
+                    <h:message for="registryhaslo2" style="color: #D20005" />
+                  
+                          
+                    <p:outputLabel value="Email:" style="color: #333333;font-size: 15px; font-family: consola; font-weight: 500" />
+                    <p:inputText id="registryemail" value="#{registrationController.user.email}" required="true" requiredMessage="Pole wymagane"  styleClass="inputTextRejestracja" />
+                    <h:message for="registryemail" style="color: #D20005" />
+                  
+                                        
+                    <h:panelGroup>
+                    <div align="left" style="">
+                        <div style="display: inline-block; width: 30%;margin-right: 12px;" >  
+                    
+                            <h:panelGroup>
+                                <p:outputLabel value="Rok:" style="font-size: 15px; font-family: consola; color: #333333" /><br/>
+                                <p:selectOneMenu id="rokId" value="#{registrationController.rok}" required="true" requiredMessage="Pole wymagane" var="var"  >
+                                      
+                                    <f:selectItems value="#{registrationController.rokList}" itemLabel="#{itemVar}" itemValue="#{itemVar}" var="itemVar" />
+
+                                    <p:column>
+                                        <h:outputText value="#{var}" />
+                                    </p:column>
+          
+                                </p:selectOneMenu>
+                                <h:message for="rokId" style="color: #D20005" />
+                            </h:panelGroup>   
+                        </div>
+                        <div style="display: inline-block;width: 30%; margin-right: 12px;" >  
+                            <h:panelGroup>
+                                <p:outputLabel value="Miesiąc:" style="font-size: 15px; font-family: consola; color: #333333" /><br/>
+                                <p:selectOneMenu id="miesId" value="#{registrationController.miesiac}" required="true" requiredMessage="Pole wymagane"  var="var"  >
+                                      
+                                    <f:selectItems value="#{registrationController.miesiacList}" itemLabel="#{itemVar}" itemValue="#{itemVar}" var="itemVar" />
+
+                                    <p:column>
+                                        <h:outputText value="#{var}" />
+                                    </p:column>
+          
+                                    </p:selectOneMenu>
+                                    <h:message for="miesId" style="color: #D20005" />
+                                </h:panelGroup>  
+                    
+                        </div>
+                        <div style="display: inline-block;width: 30%" >  
+                    
+                            <h:panelGroup>
+                                <p:outputLabel value="Dzień:" style="font-size: 15px; font-family: consola; color: #333333" /><br/>
+                                <p:selectOneMenu id="dzienId" value="#{registrationController.dzien}" required="true" requiredMessage="Pole wymagane" var="var"  >
+                                      
+                                    <f:selectItems value="#{registrationController.dzienList}" itemLabel="#{itemVar}" itemValue="#{itemVar}" var="itemVar" />
+
+                                    <p:column>
+                                        <h:outputText value="#{var}" />
+                                    </p:column>
+          
+                                </p:selectOneMenu>
+                                <h:message for="dzienId" style="color: #D20005" />
+                            </h:panelGroup>
+                        </div>
+                    </div>
+                    </h:panelGroup>
+       
+                    
+                    <p:outputLabel value="Płeć:" style="color: #333333; font-family: consola; " />                     
+                    <h:selectOneRadio id="plec" value="#{registrationController.user.plec}" class="plec"  required="true" requiredMessage="Pole wymagane" layout="lineDirection" >
+                        <f:selectItem itemValue="Kobieta" itemLabel="Kobieta" />
+                        <f:selectItem itemValue="Mezczyzna" itemLabel="Mezczyzna" />
+                    </h:selectOneRadio>
+                    <h:message for="plec" style="color: #D20005" />
+ 
+                    <p:spacer />
+                    <p:graphicImage id="loadingregistry" value="./resources/images/spinners/loading.gif" height="15" style="border-radius:3px; width: 100%; display: none"  />
+                        
+                    <f:facet name="footer">
+                        <div align="center" >
+                            
+                            <br/>
+                            <p:commandLink value="Rejestracja" action="#{registrationController.rejestracja()}" onclick="onOff();" update="registryForm registryGrowl" style="border-radius: 4px;" styleClass="menuButtonRejestracja"/>
+                            <br/><br/>
+                        </div>
+                    </f:facet>
+                </h:panelGrid>
+                </div>
+        </h:form>     
+                
+        <script type="text/javascript" >
+            
+           $(document).ready(function(){
+               
+
+           });
+           
+           function onOff(){
+                
+                $("#registryForm\\:loadingregistry").toggle();
+           }
+      
+
+        </script>
+        
+    </ui:define>
+    
+    <ui:define name="bottom">   
+            <p:spacer />
+ 
+    </ui:define> 
+    
+</ui:composition>

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssTopPanel.css" />  
+        
+        <h:panelGroup id="stickyPanel" >
+        <div style="/*background: url('./resources/images/blueBg/blue90.png');*/">
+            <div style="background: url('./resources/images/blackBg/black85.png'); padding-top: 5px; padding-bottom: 7px">
+                <h:form id="loginStatusForm">  
+                    
+
+                    <div align="left" style="display: inline-block; width: 49.5%">
+
+                        <p:outputLabel value="Sam" style=";color: #ff3333;font-weight: 600; font-family: consola; font-size: 16px; margin-left: 15px"  />
+                        <p:outputLabel value="Nie" style=";color: #036fab;font-weight: 600; font-family: consola; font-size: 16px;"  />
+                        <p:outputLabel value="Jade.pl" style="color: #ff3333;font-weight: 600; font-family: consola; font-size: 16px;"  />
+
+                    </div>
+
+                    <div align="right" style="display: inline-block; width: 50%">
+
+                        <p:outputLabel value="Zalogowany jako:" style="color: #cccccc; font-family: consola; font-size: 14px;" rendered="#{userController.czyZalogowany}" />
+                        <p:outputLabel value="#{userController.zalogowanyLogin}" style="color: #009900; font-family: consola; font-size: 14px; margin-right: 8px" rendered="#{userController.czyZalogowany}" />
+                        <p:commandLink value="Wylogój się" class="logowanie_i_rejestracja_linki" ajax="false" action="#{loginController.wylogoj()}" rendered="#{userController.czyZalogowany}" style="margin-right: 15px" />
+
+                        <p:commandLink id="login1" value="Logowanie" class="logowanie_i_rejestracja_linki" rendered="#{!userController.czyZalogowany}"/>
+                        <p:outputLabel value=" / " style="color: #cccccc; font-family: consola; font-size: 14px;" rendered="#{!userController.czyZalogowany}"/>
+                        <p:commandLink value="Rejestracja" action="#{NavigatorStron.moveToRejestracja()}" style="margin-right: 15px" rendered="#{!userController.czyZalogowany}" class="logowanie_i_rejestracja_linki"/>
+
+                    </div>
+
+
+
+                    
+                 </h:form>
+            </div>
+        </div>
+            
+            
+        
+        <h:panelGroup >
+        <div id="navigationPanel" style="background: url('./resources/images/blueBg/blue50.png'); border: none; border-radius: 0px;" >
+            <div align="left"  style="" >
+                <h:form id="navigationForm">
+                    <p:commandLink id="navigationLink1" value="STRONA STARTOWA" ajax="false" action="#{NavigatorStron.moveToHome()}"  class="linki"/>
+                    <p:commandLink id="navigationLink2" value="TWÓJ PROFIL"  ajax="false" action="#{NavigatorStron.moveToProfil()}" class="linki"/>
+                    <p:commandLink id="navigationLink3" value="KREATOR PODRÓŻY" ajax="false" action="#{NavigatorStron.moveToNewTrip()}" class="linki"/>
+                    <p:commandLink id="navigationLink4" value="OZNACZ SIĘ NA MAPIE" ajax="false" class="linki" action="#{NavigatorStron.moveToPrzypnijSie()}"/>
+                    <p:commandLink id="navigationLink5" value="LISTA WYCIECZEK"  ajax="false" action="#{NavigatorStron.moveToListaWycieczek()}" class="linki"/>
+                    <p:commandLink id="navigationLink6" value="MAPA OZNACZONYCH OSÓB" ajax="false" action="#{NavigatorStron.moveToMapaOsob()}" class="linki"/>
+                
+                    <p:commandLink id="navigationLink7" value="PANEL ADMINISTRATORA" style="color: red!important;" ajax="false" action="#{NavigatorStron.moveToPanelAdmina()}" rendered="#{userController.czyAdmin}" class="linki"  />
+                    <h:inputHidden id="aktywnaStrona" value="#{NavigatorStron.activPage}" />
+                         
+                </h:form> 
+            </div >
+        </div>  
+        </h:panelGroup>
+        </h:panelGroup>
+      <!-- <p:sticky target="stickyPanel" /> -->
+        
+        
+        <!-- wyskakujace okinenko logowania  -->
+        <h:form id="LoginForm" >
+            <p:overlayPanel widgetVar="log_panel" id="log_panel" for="loginStatusForm:login1" showEffect="clip" hideEffect="clip" class="ui-overlaypanel"  hideEvent="mousedown"
+                               style=" background: url('./resources/images/blackBg/black70.png');padding-top: 10px!important;padding-bottom: 10px;
+                                       padding-left: 0px!important; padding-right: 0px!important; border: solid 1px #0066E3; ">
+
+                <h:panelGrid columns="1">
+                        
+                        <h:panelGroup>
+                            <p:outputLabel value="Login:" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " /> <br/>
+                            <p:inputText id="login" value="#{loginController.login}" required="true" requiredMessage="Pole wymagane" class="poleInputOknaLogowania"/><br/>
+                            <h:message id="messLog" for="login" style="color: #D20005;" />
+                        </h:panelGroup>
+                        
+                        <h:panelGroup>
+                            <p:outputLabel value="Haslo:" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " /> <br/>
+                            <p:password id="password" value="#{loginController.haslo}" required="true" requiredMessage="Pole wymagane"  class="poleInputOknaLogowania"/> <br/>
+                            <h:message id="messPass" for="password" style="color: #D20005;" />
+                        </h:panelGroup>
+                        
+                        <p:graphicImage id="loadingLogin" value="./resources/images/spinners/loading.gif" height="15" style="border-radius:3px; width: 26.5vh; display: none"  />
+                        <p:outputLabel id="loginResultInfo" value="#{loginController.loginInfoResult}" style="color: #D20005;"/>
+                        <h:inputHidden id="loginResultInfoHidden" value="#{loginController.loginInfoResult}" />
+
+                        <f:facet name="footer">
+                            <div align="left" style="padding-top: 5px;">   
+                                
+                                <p:commandLink value="Logowanie" action="#{loginController.logowanie()}" onclick="startLogin();" oncomplete="failLogin();" update="loginResultInfo login password messLog messPass loginResultInfoHidden" class="zatwierdzLogowanie" />
+                            
+                            </div>
+                        </f:facet>
+                        
+                </h:panelGrid>
+                   
+            </p:overlayPanel>
+        </h:form>
+
+        <h:outputScript library="js" name="TopPanelSterowanie.js"></h:outputScript>
+    </h:body>
+</html>

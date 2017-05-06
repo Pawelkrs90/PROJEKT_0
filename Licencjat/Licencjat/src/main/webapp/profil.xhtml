@@ -1,0 +1,124 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content" >
+           
+        <h:form>
+                <div style="background: url('./resources/images/blueBg/blue50.png');">
+                    <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom: 0.7vh;">
+                        <p:outputLabel value="Twój profil" style="color: #3399ff; font-size: 15px;; font-weight: 600;" />
+                    </div>
+                </div>
+            
+            <h:panelGroup rendered="#{!userController.czyZalogowany}" >
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');margin-top: 20vh;  padding-top: 1vh; padding-bottom:  1vh;">
+                    <p:outputLabel value="Nie jesteś zalogowany, zaloguj się lub założ nowe konto!"  style="color: #ff3333; font-size: 16px;; font-weight: 600;" />
+                </div>
+            </div>
+            </h:panelGroup>
+            
+            
+            <h:panelGroup rendered="#{userController.czyZalogowany}" >
+                <div align="" style="background:url('./resources/images/whiteBg/white80.png');">
+                
+                    <br/>            
+                    <div align="" style="height: 32vh;">
+                        <div style="float: left" >
+                            <p:graphicImage value="./resources/images/profile.gif" width="90" height="120" style="margin-left: 35vw" class="shadow_box_left_bot" />
+                        </div>
+ 
+                        <div style="float: left; margin-left: 35px"  >
+                            <h:form id="profilForm">
+                            <h:panelGrid cellpadding="5" columns="2" >
+                        
+                                <p:outputLabel value="Imie: "  style="font-family: consola;font-size: 16px; font-weight: 600; color: #333333 " />
+                                <p:inplace style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" editor="true" >
+                                    <p:inputText value="#{profilController.user.imie}" style="font-size: 13px; font-weight: normal"  />
+                                </p:inplace>
+
+                                
+                                <p:outputLabel value="Login: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333" />
+                                <p:inplace style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" editor="true" >
+                                    <p:inputText value="#{profilController.user.login}" style="font-size: 13px; font-weight: normal" />
+                                </p:inplace>    
+                                
+                                
+                                <p:outputLabel value="Hasło: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:inplace style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" editor="true" >
+                                    <p:inputText value="#{profilController.user.haslo}" style="font-size: 13px; font-weight: normal" />
+                                </p:inplace>  
+                                
+                                
+                                <p:outputLabel value="Email: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:inplace style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" editor="true" >
+                                    <p:inputText value="#{profilController.user.email}" style="font-size: 13px; font-weight: normal" />
+                                </p:inplace>  
+                                
+                                <p:outputLabel value="Data urodzenia: " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <h:panelGroup>
+                                    <p:outputLabel value="#{profilController.user.dataUr}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                                </h:panelGroup>
+                                
+                                
+                                <p:outputLabel value="Płeć: " style="font-family: consola;font-size: 16px; font-weight: 600; color: #333333" />
+                                <p:outputLabel value="#{profilController.user.plec}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+                               
+                                <p:outputLabel value="Uprawnienia " style="font-family: consola;font-size: 16px; font-weight: 600;color: #333333 " />
+                                <p:outputLabel value="#{profilController.user.uprawnienia}" style="font-family: consola;font-size: 16px; font-weight: 600;color: #006666" />
+
+                            </h:panelGrid>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <p:commandButton value="Zapisz zmiany" ajax="false" style="" action="#{profilController.saveProfil()}" />
+                    </div>
+                    <br/>
+                <div align="center">
+                  <h:panelGrid cellpadding="5" columns="2" style="padding-left: 20px; background: url('./resources/images/whiteBg/white70.png'); border-radius: 7px;margin-top: 0px; margin-left: 5px; "  >
+
+                        <p:outputLabel value="Wycieczki w których uczestniczysz: " style="font-size: 16px; font-weight: 600;color: #333333 " />
+                        <p:outputLabel value="#{profilController.joinedTrips}" style="font-size: 16px; font-weight: 600;color: #0066E3" />
+                      
+                        
+                        <p:outputLabel value="Wycieczki utworzone przez Ciebie: " style="font-size: 16px; font-weight: 600;color: #333333 " />
+                        <p:outputLabel value="#{profilController.twojaWycieczka}" style="font-size: 16px; font-weight: 600;color: #0066E3" />
+
+                    </h:panelGrid>  
+                   </div>
+                <br/><br/><br/><br/>
+                <br/>
+                
+            </div>
+            </h:panelGroup>
+            
+            
+           <br/><br/><br/> 
+            
+            
+            
+            
+            
+        </h:form>
+
+    </ui:define>
+    
+     <ui:define name="bottom">   
+        <h:form>
+         <div align="center" style=" position:absolute; bottom:0;/*background: url('./resources/images/blueBg/blue80.png')*/; width:100%; /*border-top: solid 2px #AFAFAF*/"  >
+             <div style="/*background: url('./resources/images/blackBg/black50.png');*/">
+                <br/> 
+                <br/>
+                <br/>
+               
+            </div>
+         </div>
+        </h:form>
+     </ui:define>
+    
+</ui:composition>

@@ -1,0 +1,50 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="content">
+        
+        <h:form>
+            
+            <div style="background: url('./resources/images/blueBg/blue50.png');">
+                <div align="left" style="background: url('./resources/images/blackBg/black40.png');font-size: 14px; padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                    <div style=" display: inline-block; ">
+                        <p:commandLink value="UŻYTKOWNICY " class="buttony" action="userData.xhtml"/>                      
+                        <p:commandLink value="WYCIECZKI " class="buttony" action="tripData.xhtml"  />
+                    </div>
+                </div>
+            </div>
+
+        </h:form>
+            
+            <div style=";border-radius: 3px;">  
+                <ui:insert name="adminContent"></ui:insert>
+            </div>   
+   
+            
+
+        
+        <script type="text/javascript">
+   
+            $(document).ready(function(){
+
+                 //uruchamiam widok wycieczek odrazu po zaladowaniu strony
+                 //jak mi sie juz zaladuje to zeby sie nie ładowało w nieskonczonosc to daje tego ifa
+                 if(window.location.href.search("tripData.xhtml") === -1){  
+             
+                    window.location.href = "tripData.xhtml";
+                }
+
+            });
+    
+        </script>
+        
+        
+    </ui:define>
+    
+     <ui:define name="bottom">    
+      
+     </ui:define> 
+</ui:composition>

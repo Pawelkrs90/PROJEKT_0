@@ -1,0 +1,38 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="content">
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssWyznaczanieTrasy.css" /> 
+        
+        <div style="background: url('./resources/images/blueBg/blue50.png');">
+            <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                <p:outputLabel value="Mapa przyietych osób" style="color: #3399ff; font-size: 14px; font-weight: 600;" />
+            </div>
+        </div>
+        
+        <h:form id="MapaPrzypietychForm"> 
+
+            <div style=" width: 100%"> 
+                <p:gmap id="GmapMapaPrzypietych"
+                        widgetVar="mapMapaPrzypietych"
+                        fitBounds="true"
+                        center="#{gmapMapaPrzypietych.centerPosition}" 
+                        zoom="#{gmapMapaPrzypietych.zoom}" 
+                        type="#{gmapMapaPrzypietych.mapType}" 
+                        style="width:100%; height:80vh;">
+                </p:gmap> 
+            </div>
+
+            <h:inputHidden id="jsonDataMapaPrzypietych" value="#{gmapMapaPrzypietych.jsonData}" />
+        </h:form>  
+
+     <h:outputScript library="js" name="markerclusterer.js"></h:outputScript>
+     <h:outputScript library="js" name="gmapMapaPrzypietych.js"></h:outputScript>
+    </ui:define>
+    
+    
+</ui:composition>

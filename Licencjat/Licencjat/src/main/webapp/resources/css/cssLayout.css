@@ -1,0 +1,178 @@
+/**************************************GENERAL STYLES************************************/
+@font-face {
+    
+    font-family: verdana;
+    src: url(../fonts/verdana.ttf) format("truetype");
+}
+@font-face {
+    
+    font-family: consola;
+    src: url(../fonts/consola.ttf) format("truetype");
+}
+
+
+#top {
+    
+    position: relative;
+}
+
+#topTitle{
+    
+    height: 4.5vh; 
+    width: 100%;
+    padding-top: 2vh;
+}
+
+#bottom {
+    
+   width:100%;
+   color: white;
+}
+
+.center_content {
+    
+    position: relative;
+  
+}
+
+.shadow_box_left_bot{
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.25);
+    box-shadow: 6px 6px 5px 0px rgba(0,0,0,0.25);
+}
+
+/****************************************INDEX*********************************************/
+
+.linkiIndex{
+    color: #0066E3!important; 
+    font-weight: bolder!important; 
+    font-family: consola!important; 
+    font-size: 14px!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+}
+
+.linkiIndex:hover{
+    
+    color: #ff9933!important; 
+    font-weight: bolder!important; 
+    font-family: consola!important; 
+    font-size: 14px!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+}
+
+/**************************************TOP PANEL****************************************************/
+
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+/************************************NOWA WYCIECZKA********************************************/
+
+.panelGridNewTrip{
+    margin-bottom: 30px;
+    margin-top: 50px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background: url('../images/blackBg/black20.png');  
+    border-radius: 5px;
+    border: solid 2px #333333;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+.facetHeaderIFooterNewTrip{
+   background: #666666;
+   border-radius: 5px;
+   
+   color: #ffffff;
+   font-size: 16px;
+   font-weight: 600;
+   
+  
+}
+.saveButton{
+    background: #D20005;  
+    color: #ffffff;
+    font-size: 15px!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+    border: solid 2px #999999;
+    border-radius: 5px;
+}
+.saveButton:hover{
+    background-color: #333333!important;  
+    color: #ffffff;
+    font-size: 15px!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+    border: solid 2px #999999;
+    border-radius: 5px;
+}
+.saveButton:active{
+    background-color: #cccccc!important; 
+    color: #ffffff;
+    font-size: 15px!important;
+    text-decoration: none!important;
+    text-shadow: none!important;
+    border: solid 2px #999999;
+    border-radius: 5px;
+}
+.oneMenutext{
+    font-size: 13px;
+}              
+
+/*
+.oneSelectBotton div:first-child span {
+    color: white;
+    text-decoration: none!important;
+    text-shadow: none!important;
+}
+.oneSelectBotton div:nth-child(2) span {
+    color: white;
+    text-decoration: none!important;
+    text-shadow: none!important;
+}
+.oneSelectBotton div:nth-child(3) span {
+    color: white;
+    text-decoration: none!important;
+    text-shadow: none!important;
+}
+*/
+.ui-radiobutton-box{
+   /* background: #036fab;*/
+    border:solid 2px #666666;
+    color: red;
+
+}
+.ui-radiobutton-icon{
+    /*background-color: red;*/
+}
+
+
+/******************************PANEL ADMINA**********************************/
+.buttony{
+    color: #cccccc; 
+    font-weight: 600; 
+    font-family: monospace; 
+    margin-left: 3px;
+    font-size: 16px;
+    text-decoration: none;
+    
+}
+.buttony:hover{   
+    color: #ff9933; 
+    font-weight: 600; 
+    font-family: monospace; 
+    margin-left: 3px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+
+

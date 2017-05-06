@@ -1,0 +1,84 @@
+<ui:composition template="./PanelAdministratora.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="adminContent">
+     
+    <style type="text/css" >         
+        .ui-datalist{
+            width: 60%;
+  
+        }
+        .ui-datalist-content{
+           
+            background:none!important;
+            border: none !important;
+        }
+        .ui-datalist-data{
+
+        }
+        .ui-datalist-item{
+            display: block!important;
+            background: url('./resources/images/whiteBg/white80.png')!important;
+            border: solid 2px #666666!important; 
+            border-radius: 6px!important; 
+            margin-bottom: 8px!important;
+            padding-top: 5px!important;
+            padding-bottom: 8px!important;
+            padding-left: 3px!important;
+        }     
+        .ui-datalist-item:hover{
+            display: block!important;
+            background: white!important;
+            border: solid 2px #666666!important; 
+            border-radius: 6px!important; 
+            margin-bottom: 8px!important;
+            padding-top: 5px!important;
+            padding-bottom: 8px!important;
+            padding-left: 3px!important;
+        }      
+    </style>         
+        
+        <div align="center">  
+                   
+            <h:form id="userDataForm">  
+                <p:growl id="userDataGrowl" />         
+  
+                <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                        <p:outputLabel value="Użytkownicy" style="color: #3399ff; font-size: 14px;; font-weight: 600;" />
+                </div>
+             
+
+                <p:dataList id="dataListID" value="#{ListOfUsers.userList}" var="var" type="definition"  >
+
+                <div style="height: 170px">
+                    
+                    <div style="float: left">
+                        <p:graphicImage value="./resources/images/profile.gif" width="55" height="70"/>
+                    </div>
+                  
+                    <div align="left" style="float: left; margin-left: 15px">
+                       
+                            <p:outputLabel value="Id: #{var.id}" style="color: red; font-weight: 500; font-size: 15px; font-family: monospace" /><br/>
+                            <p:outputLabel value="Imie:  #{var.imie}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Login:  #{var.login}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Hasło:  #{var.haslo}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Data ur.:  #{var.dataUr}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Email:  #{var.email}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Płeć:  #{var.plec}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                            <p:outputLabel value="Uprawnienia:  #{var.uprawnienia}" style="color: green; font-weight: 500; font-size: 15px; font-family: monospace"/><br/>
+                       
+                            <br/> 
+                            <p:commandLink value="Usuń użytkownika" action="#{ListOfUsers.deleteUser(var)}" update="dataListID userDataForm:userDataGrowl"/>
+                        
+                    </div>
+    
+                </div> 
+                </p:dataList> 
+                <br/><br/>
+            </h:form>        
+        </div>   
+    </ui:define>
+</ui:composition>

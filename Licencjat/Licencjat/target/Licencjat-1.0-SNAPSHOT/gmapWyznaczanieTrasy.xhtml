@@ -1,0 +1,275 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <link rel="stylesheet" type="text/css" href="./resources/css/cssWyznaczanieTrasy.css" />
+
+        <div style="background: url('./resources/images/blueBg/blue50.png');">
+            <div align="center" style="background: url('./resources/images/blackBg/black40.png');  padding-top: 0.6vh; padding-bottom:  0.6vh;">
+                <p:outputLabel value="Kreator trasy" style="color: #3399ff; font-size: 15px;; font-weight: 600;" />
+            </div>
+        </div>
+
+        <div style=" background:url('./resources/images/blackBg/black60.png'); border-radius: 2px; margin-top: 2px; margin-left: 0px; margin-right: 0px; padding-left: 8px">
+            <h:form id="searchPanel" >
+                <p:outputLabel value="Wyszukaj adres: " class="outputPaskaWyszukiwania" style="margin-left: 5px" />
+                <h:inputText id="wyszukajAdresId" value="#{gmapWyznaczanieTrasyController.geocodingSearch}" class="inputTextWyszukiwanie" style="margin-top: 2px; margin-bottom: 2px;" />
+
+                <p:commandLink id="szukajNaMapie" value="Szukaj" style="margin-left: 5px" onclick="codeAddress();" class="buttony" />
+                <p:defaultCommand target="szukajNaMapie" />
+
+                <p:outputLabel value="Aktualny tryb: " class="outputPaskaWyszukiwania" style="margin-left: 100px" />
+                <p:outputLabel id="trybData" value="" class="outputPaskaWyszukiwania" style="margin-left: 5px; color: #6699ff!important" />
+
+            </h:form>
+        </div>
+
+
+        <div style=" background:url('./resources/images/blackBg/black60.png'); border-radius: 2px; margin-top: 2px; margin-left: 0px; margin-right: 0px; padding-bottom: 3px; padding-top: 3px;">
+            <h:form id="formSterowanieTrybami" prependId="false">
+                <p:growl id="topGrowl" />
+
+                <p:commandLink id="mapOption1" value="Punkt" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('PUNKT')}" oncomplete="setWyswietlanyTryb();" />
+                <p:commandLink id="mapOption2" value="Okrąg" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('OKRAG')}" oncomplete="setWyswietlanyTryb();"  />
+                <p:commandLink id="mapOption3" value="Prostokąt" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('PROSTOKAT')}" oncomplete="setWyswietlanyTryb();"   />
+                <p:commandLink id="mapOption4" value="Wielokąt" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('WIELOKAT')}" oncomplete="setWyswietlanyTryb();"  />
+                <p:commandLink id="mapOption5" value="Trasa-mnualnie" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('PATH_MANUAL')}" oncomplete="setWyswietlanyTryb();"  />
+                <p:commandLink id="mapOption6" value="Trasa-Automatycznie" class="mapOptions" update="overlayType topGrowl"
+                               action="#{gmapWyznaczanieTrasyController.wybierzOverlay('PATH_AUTOMATIC')}" oncomplete="setWyswietlanyTryb();"  />
+
+                <p:commandLink id="mapOption7" value="Wybór warstwy" class="mapOptionsLayer" update="topGrowl" style="margin-left: 5vw!important" />
+
+                <h:inputHidden id="overlayType" value="#{gmapWyznaczanieTrasyController.overlayType}" />
+
+            </h:form>
+        </div>
+
+        <!-- wyskakujace okinenko do wybierania typu transportu   -->
+        <h:form id="FormWyborTransportu" prependId="false">
+            <p:overlayPanel widgetVar="panelWyboruTransporu" id="panelWyboruTransportu" for="mapOption6" showEffect="clip" hideEffect="clip" class="ui-overlaypanel" showEvent="mouseover" hideEvent="mousedown"
+                            style=" background: url('./resources/images/blackBg/black80.png');
+                                       /*border-radius: 1px;*/
+                                       padding-top: 10px!important;
+                                       padding-bottom: 10px;
+                                       padding-left: 0px!important;
+                                       padding-right: 0px!important;
+                                       border: none; ">
+
+                <h:panelGrid columns="1">
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Wybierz typ transportu:" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " /> <br/>
+
+                    </h:panelGroup>
+
+                    <p:commandLink value="Pieszo" class="TransportOptions" onclick="SelectTransportType('WALKING'); PF('panelWyboruTransporu').hide();" />
+                    <p:commandLink value="Rower" class="TransportOptions" onclick="SelectTransportType('BICYCLING'); PF('panelWyboruTransporu').hide();" />
+                    <p:commandLink value="Samochód, motocykl" class="TransportOptions" onclick="SelectTransportType('DRIVING'); PF('panelWyboruTransporu').hide();" />
+                    <p:commandLink value="Transport publiczny" class="TransportOptions" onclick="SelectTransportType('TRANSIT'); PF('panelWyboruTransporu').hide();" />
+                    <p:commandLink value="Samolot" class="TransportOptions" onclick="SelectTransportType('PLANE'); PF('panelWyboruTransporu').hide();" />
+
+                </h:panelGrid>
+
+            </p:overlayPanel>
+        </h:form>
+
+        <!-- wyskakujace okinenko do wyboru warstwy  -->
+        <h:form id="FormWyborWarstwy" prependId="false">
+            <p:overlayPanel widgetVar="panelWyboruWarstwy" id="panelWyboruWarstwy" for="mapOption7" showEffect="clip" hideEffect="clip" class="ui-overlaypanel" showEvent="mouseover" hideEvent="mousedown"
+                            style=" background: url('./resources/images/blackBg/black80.png');
+                                       /*border-radius: 1px;*/
+                                       padding-top: 10px!important;
+                                       padding-bottom: 10px;
+                                       padding-left: 0px!important;
+                                       padding-right: 0px!important;
+                                       border: none; ">
+
+                <h:panelGrid columns="1">
+
+                    <h:panelGroup>
+                        <p:outputLabel value="Wybierz rodzaj warstwy" style="color: #cccccc; font-family:  Arial, 'Arial CE', 'Lucida Grande CE', lucida, 'Helvetica CE', sans-serif;
+                                       font-size: 14px; font-weight: 600; " />
+
+                        <br/>
+                    </h:panelGroup>
+
+                    <p:commandLink value="Normal" class="TransportOptions" oncomplete="SelectMapLayer('NORMAL'); PF('panelWyboruWarstwy').hide();" />
+                    <!--  <p:commandLink value="Weather" class="TransportOptions" oncomplete="SelectMapLayer('WEATHER');" />  -->
+                    <p:commandLink value="Transit" class="TransportOptions" oncomplete="SelectMapLayer('TRANSIT'); PF('panelWyboruWarstwy').hide();" />
+                    <p:commandLink value="Traffic" class="TransportOptions" oncomplete="SelectMapLayer('TRAFFIC'); PF('panelWyboruWarstwy').hide();" />
+                    <p:commandLink value="Bicycling" class="TransportOptions" oncomplete="SelectMapLayer('BICYCLING'); PF('panelWyboruWarstwy').hide();" />
+
+                </h:panelGrid>
+
+            </p:overlayPanel>
+        </h:form>
+
+        <div  style="margin-left: 5px; margin-right: 5px; margin-top: 5px" >
+
+            <h:form id="wyznaczanieTrasyForm1">
+
+                <!-- <p:remoteCommand name="RemoteUpdateMap" update="Gmap"  /> -->
+
+                <p:growl id="MapGrowl" />
+
+                <p:contextMenu id="cmenu" widgetVar="cm" for="Gmap" beforeShow="return true;">
+                    <p:menuitem value="Nowa trasa" onclick="ResetPolyline();" icon="ui-icon-close" />
+                    <p:menuitem value="Wyczyść Punkty" onclick="ClearMarkers();" icon="ui-icon-disk" />
+                    <p:menuitem value="Wyczyść Okręgi" onclick="ClearCircles();" icon="ui-icon-arrowrefresh-1-w" />
+                    <p:menuitem value="Wyczyść Ścieżki" onclick="ClearPolylines();" icon="ui-icon-close" />
+
+
+
+                </p:contextMenu>
+
+                <p:gmap id="Gmap"
+                        fitBounds="true"
+                        center="#{gmapWyznaczanieTrasyController.centerPosition}"
+                        zoom="#{gmapWyznaczanieTrasyController.zoom}"
+                        type="#{gmapWyznaczanieTrasyController.mapType}"
+                        model="#{gmapWyznaczanieTrasyController.model}"
+                        widgetVar="map"
+                        style="width:100%; height:68vh; box-shadow: -5px 0 5px -5px #333, 5px 0 5px -5px #333;"
+                        onPointClick="GmapClickEventHandler(event);">
+
+
+
+
+                    <p:ajax event="overlaySelect" listener="#{gmapWyznaczanieTrasyController.onMarkerSelect}" />
+                    <p:ajax event="markerDrag" listener="#{gmapWyznaczanieTrasyController.onMarkerDrag}" update="MapGrowl" />
+                    <p:ajax event="stateChange" listener="#{gmapWyznaczanieTrasyController.onStateChange}" update="MapGrowl"/>
+                    <p:ajax event="pointSelect" listener="#{gmapWyznaczanieTrasyController.onPointSelect}" update="MapGrowl"/>
+
+                </p:gmap>
+
+            </h:form>
+
+        </div>
+
+        <!-- OKNO DIALGOWE DO TWORZENIA TRASY PODROZY    -->
+        <p:dialog widgetVar="DataDialog" header="Uzupełnij informacje" showEffect="fade" closable="false"  modal="true" resizable="false"
+                  style="background: #cccccc;
+                         opacity: 1.0;
+                         border: solid 1px #666666;
+                         border-radius: 9px;" >
+
+            <h:form id="dataDialogForm" prependId="false">
+
+                <p:growl id="DataDialogGrowl" />
+
+                <!-- PANEL WYBORU TYPU MARKERA, NAZWY, OPISU -->
+                <div  >
+
+                    <h:panelGrid columns="1">
+
+                        <h:panelGroup>
+                            <p:outputLabel value="Typ punku:" style="font-size: 15px; font-family: monospace; color: #333333" /><br/>
+                            <p:selectOneMenu value="#{gmapWyznaczanieTrasyController.markertype}" var="c"  >
+
+                                <p:ajax oncomplete="ZmianaTypuMarkera()" update="DataDialogGrowl mType" event="change"/>
+
+                                <f:selectItems value="#{gmapWyznaczanieTrasyController.typyPunktow}" itemLabel="#{typ}" itemValue="#{typ}" var="typ" />
+
+                                <p:column>
+                                    <h:outputText value="#{c}" />
+                                </p:column>
+
+
+                            </p:selectOneMenu>
+                            <h:inputHidden id="mType" value="#{gmapWyznaczanieTrasyController.markertype}" /> <!-- do przekazania parametru do SelectMarkerType() -->
+                        </h:panelGroup>
+
+                        <p:inputTextarea id="opis" value="#{gmapWyznaczanieTrasyController.opis}"
+                                         class="inputTextDialogOpis"  />
+                        <p:watermark value="Opis" for="opis" />
+
+                        <f:facet name="footer" >
+                            <p:commandButton value="Zatwierdz" oncomplete="AcceptButton()" style="font-size: 14px; width:49%; "/>
+                            <p:commandButton value="Anuluj" onclick="CancelButton();" style="font-size: 14px; width: 49%;  " />
+                        </f:facet>
+                    </h:panelGrid>
+
+                    <h:inputHidden id="lat" value="#{gmapWyznaczanieTrasyController.lat}" />
+                    <h:inputHidden id="lng" value="#{gmapWyznaczanieTrasyController.lng}" />
+
+                </div>
+
+            </h:form>
+        </p:dialog>
+
+        <!-- OKNO DIALGOWE ZMIANY PARAMETROW OKREGU   -->
+        <p:dialog widgetVar="sizeDialogVar" showEffect="fade"  header="Określ rozmiar okręgu" modal="true"
+                  style="background: #cccccc;
+                         opacity: 1.0;
+                         border: solid 1px #666666;
+                         border-radius: 9px;" >
+
+            <h:form id="sizeDialog" prependId="false">
+
+                <h:panelGrid columns="1" style="padding-left: 2px; " >
+
+                    <h:panelGroup id="sizeSliderGroup" >
+                        <h:outputText id="sizeOutput" value="Rozmiar obszaru: #{gmapWyznaczanieTrasyController.sizeObszar}"
+                                      style="font-size: 14px;
+                                         color: #333333; 
+                                         font-family: monospace;" />
+
+                        <h:inputHidden id="sizeHidden" value="#{gmapWyznaczanieTrasyController.sizeObszar}" />
+                        <p:slider for="sizeHidden" display="sizeOutput" displayTemplate="Rozmiar obszaru: {value}" class="ui-slider"  >
+                            <p:ajax event="slideEnd" oncomplete="ChangeSize();" />
+                        </p:slider>
+                    </h:panelGroup>
+
+                    <p:inputText id="opisObszaru" value="#{gmapWyznaczanieTrasyController.obszarOpis}" class="inputTextDialogOpis"/>
+                    <p:watermark for="opisObszaru" value="Dodaj opis" />
+
+                </h:panelGrid>
+
+                <br/>
+                <p:commandButton value="Accept" ajax="true" onclick="AcceptChangeSize();" />
+                <p:commandButton value="Cancel" ajax="true" onclick="CancelChangeSize();" />
+
+
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+
+    <ui:define name="bottom">
+
+        <div align="center" style=" background:url('./resources/images/blackBg/black50.png'); border-radius: 2px; margin-top: 5px; margin-left: 0px; margin-right: 0px">
+
+            <h:form id="bottomForm1" prependId="false">
+                <p:growl id="bottomGrowl" />
+
+                <br/> <!-- action="# {nowaWycieczka.saveData()}"-->
+                <p:commandLink value="*** ZAPISZ TRASE ***" action="#{nowaWycieczka.saveData()}" class="przyciskZapiszTrase" update="FinalTripData" onclick="ZapiszDaneDoBazy();" />
+                <p:graphicImage id="loadingZapisTrasy" value="./resources/images/spinners/loading.gif" height="15" style="border-radius:3px; width: 40vh; display: none"  />
+                <h:inputHidden id="FinalTripData" value="#{nowaWycieczka.newTrip.JSON_TRIP_DATA}" />
+                <br/>
+
+            </h:form>
+        </div>
+
+        <div id="directions" style="background-color: #FFFFFF" >
+
+        </div>
+        <!-- GŁOWNA OBSLUGA MAPY -->
+        <!--<script type="text/javascript" src="./resources/js/GMap.js" />   -->
+
+        <!--<h:outputScript library="js" name="GMap2.js"></h:outputScript> -->
+        <h:outputScript library="js" name="gmapWyznaczanieTrasy.js"></h:outputScript>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,66 @@
+<ui:composition template="./Dekorator.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <ui:define name="content" >
+              
+    <h:form id="indexForm">
+
+        <div style="background: url('./resources/images/blueBg/blue50.png');">
+            <div align="center" style="background: url('./resources/images/blackBg/black40.png'); padding-top: 0.7vh; padding-bottom:  0.7vh;">
+                <p:outputLabel value="Strona startowa    " style="color: #3399ff; font-size: 14px;; font-weight: 600;" />
+            </div>
+        </div>
+
+        <div style="background-image: url('./resources/images/whiteBg/white60.png'); margin-top: 8vh">
+            
+            <br/><br/><br/>
+            <p:outputLabel value="Zalogój się, aby mieć możliwośc dodawania nowej podrózy lub wycieczki." style="color: #333333; font-size: 16px;; font-weight: 600; margin-left: 5vw; margin-right: 5px;" />
+            <br/>
+            <p:outputLabel value="Jeśli jeszcze nie masz konta, założ je." style="color: #333333; font-size: 16px; font-weight: 600; margin-left: 5vw; margin-right: 5px; margin-top: 3px;" />
+            <p:commandLink value="Rejestracja" action="#{NavigatorStron.moveToRejestracja}" class="linkiIndex" />
+          
+            <br/><br/><br/><br/><br/>
+            <p:outputLabel value="Nie będąc zalogowanym możesz jedynie przeglądać utworzone podróże przez innych użytkowników." style="color: #333333; font-size: 16px;; font-weight: 600; margin-left: 5vw; margin-right: 5px;" />
+            <p:commandLink value="Lista wycieczek" action="#{NavigatorStron.moveToListaWycieczek}" class="linkiIndex" />
+            <br/><br/>
+            <p:outputLabel value="Możesz takze zobaczyć mapę osób które nie mają z kim podróżować." style="color: #333333; font-size: 16px;; font-weight: 600; margin-left: 5vw; margin-right: 5px; " />
+            <p:commandLink value="Mapa samotnych osób" ajax="false" action="#{NavigatorStron.moveToMapaOsob}" class="linkiIndex" />
+            
+            <br/><br/><br/><br/><br/>
+            <p:outputLabel value="Prezentowana aplikacja jest wersją demonstracyjną, więc możesz zalogować sie jako Administrator" style="color: #333333; font-size: 16px;; font-weight: 600; margin-left: 5vw; margin-right: 5px; " />
+            <p:commandLink id="ti" value="Logowanie" action="#{loginController.logAsAdmin()}" onstart="showLoadIndex();" class="linkiIndex" />
+            <p:graphicImage id="loadingIndex" value="./resources/images/spinners/2.gif" width="120" height="70" style="display: none" />
+            <br/><br/><br/>
+       <br/><br/><br/>      
+             
+            <script type="text/javascript" >
+                 
+                 function showLoadIndex(){
+
+                    $("#indexForm\\:loadingIndex").show();
+                 }
+                 
+            </script>
+
+        </div> 
+     </h:form>   
+    
+    </ui:define>
+    
+     <ui:define name="bottom">    
+         <h:form>
+         <div align="center" style=" position:absolute; bottom:0;/*background: url('./resources/images/blueBg/blue80.png')*/; width:100%; /*border-top: solid 2px #AFAFAF*/"  >
+             <div style="/*background: url('./resources/images/blackBg/black50.png');*/">
+                <br/> 
+                <br/>
+                <br/>
+               
+            </div>
+         </div>
+         </h:form>
+     </ui:define>
+    
+</ui:composition>

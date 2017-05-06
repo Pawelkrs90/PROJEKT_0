@@ -1,0 +1,160 @@
+/**************************************GENERAL STYLES************************************/
+@font-face {
+    
+    font-family: verdana;
+    src: url(../fonts/verdana.ttf) format("truetype");
+}
+@font-face {
+    
+    font-family: consola;
+    src: url(../fonts/consola.ttf) format("truetype");
+}
+
+.ui-selectonemenu {
+    border-right: 9px!important;
+    width: 75%!important;
+    color:#000000!important;
+    box-shadow: none!important;
+    border: solid 2px #666666!important;
+    background: none!important;  
+    
+}  
+
+.ui-selectonemenu:focus, .ui-selectonemenu:hover{
+    
+    border-right: 9px!important;
+    width: 75%!important;
+    color:#000000!important;
+    box-shadow: none!important;
+    border: solid 2px #036fab!important;
+    background: none!important; 
+        
+}   
+
+.ui-selectonemenu-label {  /*czesc pierwszoplanowa */
+   color:#000000!important;
+   background: url('../images/blackBg/black30.png')!important;
+   border-radius: 0px!important;
+   font-size: 14px!important;
+   /* background: white!important; */
+   border: none!important;
+   box-shadow: none!important;
+   border-radius: 3px!important;
+   
+} 
+
+.ui-selectonemenu-trigger{
+   
+    background: #999999!important;
+} 
+    
+.ui-selectonemenu-item {
+    background: #666666!important;  /*tło elementow w select one menu */
+    border: solid 2px #333333 !important;
+    color: white!important;
+} 
+.ui-selectonemenu-item.ui-state-hover {
+    background: #ff6600!important;  /*tło elementow w select one menu */
+    color: white!important;
+} 
+.ui-selectonemenu-item.ui-state-highlight {/*header*/
+    
+    background: #036fab!important;
+    font-weight: 400!important;
+}
+
+.ui-watermark{  /*nie działa ;/ */
+    font-size: 14px!important;
+    color: #D20005!important;
+    font-family: monospace!important;   
+    font-weight: 100!important;  ;
+}
+
+.plec{
+    color: #333333!important;
+    font-family: consola!important; 
+    font-size: 14px!important;
+}
+
+.kalendarz .ui-inputfield  {  /*nadpisanie wszytkich inputfield (przez kalendaz) */
+    background: url('../images/blackBg/black30.png')!important;
+    width: 55vh!important;
+    border-radius:2px!important;
+    border: solid 2px #666666!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+
+.kalendarz .ui-inputfield:focus  {  /*nadpisanie wszytkich inputfield (przez kalendaz) */
+    background: url('../images/blackBg/black10.png')!important;
+    width: 55vh!important;
+    border-radius:2px!important;
+    border: solid 2px #0066E3!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+
+.inputTextRejestracja{
+    background: url('../images/blackBg/black10.png')!important;
+    width: 55vh!important; 
+    border-radius:2px!important;
+    border: solid 2px #666666!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+
+.inputTextRejestracja:focus{
+    background: url('../images/blackBg/black10.png')!important;
+    width: 55vh!important; 
+    border-radius:2px!important;
+    border: solid 2px #036fab!important;
+    font-size: 14px!important;
+    box-shadow: none!important;
+}
+
+.outputLabelRejestracja{
+   
+}
+
+.menuButtonRejestracja{
+    
+      padding-bottom: 3px!important;
+    padding-top: 3px!important;
+    display: block!important;
+    text-shadow: none !important;  
+    font-size: 14px !important;
+    font-family: monospace !important; 
+    font-weight: 600 !important;    
+    color:#ffffff !important ;
+    text-decoration: none !important;
+    background: #666666!important;
+    
+}
+
+.menuButtonRejestracja:hover{
+      padding-bottom: 3px!important;
+    padding-top: 3px!important;
+    display: block!important;
+    text-shadow: none !important;  
+    font-size: 14px !important;
+    font-family: monospace !important; 
+    font-weight: 600 !important;    
+    color:#ff6600 !important ;
+    text-decoration: none !important;
+    background: #666666!important;
+ 
+}
+
+.menuButtonRejestracja:active{
+    padding-bottom: 3px!important;
+    padding-top: 3px!important;
+    display: block!important;
+    text-shadow: none !important;  
+    font-size: 14px !important;
+    font-family: monospace !important; 
+    font-weight: 600 !important;    
+    color:#ffffff !important ;
+    text-decoration: none !important;
+    background: #333333!important;
+    
+}
