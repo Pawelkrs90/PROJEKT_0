@@ -21,42 +21,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class IndexController{
+public class formTestController{
  
     public Logger logger = Logger.getLogger("IndexLogger ");
+   
     
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-    public String homePage(Model model) {
-        
-        model.addAttribute("IndexInfo", "Application Start Page");
-        return "index";
-    }
-       
-    @RequestMapping(value = {"/ParamReqest"}, method = RequestMethod.GET)  
-    public String hello(@RequestParam(value = "userName", defaultValue = "default") String userName, 
-                        @RequestParam(value = "userRole", defaultValue = "default") String userRole, Model model) {
-    
-        logger.info("userName: "+userName);
-        logger.info("userRole: "+userRole);      
-              
-        return "index";
-    } 
-    
-    @RequestMapping(value = {"/formRequest"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/formTest"}, method = RequestMethod.GET)
     public String formGet(Model model){
         
         List<String> roleList = new ArrayList<>(Arrays.asList("USER_ROLE", "ADMIN_ROLE", "VIP_ROLE"));
-        
+        model.addAttribute("id", 99);
         model.addAttribute("RoleList", roleList);
         model.addAttribute("userRoleForm", new UserRoleForm());
-        return "formRequest";
+        return "formTest";
     }
     
-    @RequestMapping(value = "/formRequest", method = RequestMethod.POST)
+    @RequestMapping(value = "/formTest", method = RequestMethod.POST)
     public String formPost(Model model, @ModelAttribute("userRoleForm") @Valid UserRoleForm userRoleForm, BindingResult result, HttpServletRequest httpRequest){
         
             if(result.hasErrors()){   //jesli Validacja zwroci problem
-                return "formRequest";
+                return "formTest";
             }
             
             if(result.getSuppressedFields().length > 0){  //sprawdzenie czy dodano tylko pola zgodne z binderem
@@ -64,7 +48,7 @@ public class IndexController{
             }
             
             logger.info("FORM INFO: "+userRoleForm.getUserName()+"  "+userRoleForm.getUserRole());
-            return "formRequest";
+            return "formTest";
            // userDaoService.addUser(user);
            
             //return "redirect:/User/userList";
