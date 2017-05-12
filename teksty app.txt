@@ -1,7 +1,7 @@
 Togetger we can everything
 
 
-!! G³owna zasada Za freeko wszytko co mo¿liwe !!
+!! G³ówna zasada Za freeko wszystko co mo¿liwe ... albo i nie :) !!
 
 1 - Wspólne Podró¿e/wycieczki/spêdzanie wolych dni (przejazdzki itp)
 
@@ -10,21 +10,37 @@ Togetger we can everything
 3 - Szukanie noclegu/Podwózki
 
 4 - MAPA  - pinezki
-sortowanie mapy  -  Oferty/Zapotrzebowania
+	sortowanie mapy  -  Oferty/Zapotrzebowania
 		   /kokretne pinezki - Nocleg / podwozka/ Osoba(poszukuj¹cy ludzi do wycieczki lub szukajacy wycieczki)
+	
+	Wykorzystanie GPS w trakcie trwania wycieczki
 
+		   
+		   
 5 - TRASY
+	(Ciekawe miejsca takie jak (morksie oko czy jakies wodospady/ widoki/ szczyty etc.) mog³y by byæ ³adowane do mapy i braæ udzia³)
+	 miejsca te mog³y by byæ dodawane przez innych i oceniane
+	 (te ze slaba ocen¹ nie by³y by wyœwietlane)
+	
+	wyznaczanie trasy wycieczki z oznaczeniem ciekawych miejsc.
+
    Sugerowana, przypuszczalna trasa wycieczki, trasa zwiedzania itp, polecane trasy i zaznaczanie ciekawych miesc 
 
+6 - Mozliwoœæ rozmawiania miedzy uzytkownikami na stronie
+	To mo¿e byæ ciekawe...Ajaxowy czat/ala email
 
-6- Mozliwoœæ rozmawiania a'la email :)
 
-7 -OCENA  - wazna sprawa - Ocena wycieczki po powrocie
+
+7 -OCENA/Ranking  - wazna sprawa - Ocena wycieczki po powrocie
 		           Ocena - Rate - polecenia wycieczki - przed
+				   
+				   Polecane/lub przeciwnie Miejsca i trasy w polsce
+				   -||- za granic¹
 		           
 			   Ocena Ludzi   -    
-					Rózne kryteria -  pod wzglêdem odbytych wycieczekk
-						          -pod wzglêdem udostepnienia noclegu   lub skorzystania
+					Rózne kryteria -  pod wzglêdem odbytych wycieczek
+									-ogolna ocena uzytkownika przez innych uzytkownikow
+						          - pod wzglêdem udostepnienia noclegu   lub skorzystania
 							   j.w. przejazdu			 lub skorzystania
 								
 			   WIARYGODNOSC osob SIE LICZY
@@ -32,6 +48,13 @@ sortowanie mapy  -  Oferty/Zapotrzebowania
 8 - SEKCJE WIEKOWE  dla seniorow,   Dla SREDNICH i  dla M£ODYCH   +18 oczywiscie
 
 9 - ZDJEÆIe/a w profilu
+
+-----------------
+Panel admina
+Zarz¹dzanie wycieczkami, u¿ytkownikami itp
+Edycja/usuwanie/blokowanie
+
+
 
 
 £¥æ¿ênie z FACE BOOKIEM
