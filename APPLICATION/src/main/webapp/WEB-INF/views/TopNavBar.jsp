@@ -23,31 +23,38 @@
             <a class="navbar-brand" href="#">START</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item"> <!-- <li class="nav-item active"> -->
-                  <a class="nav-link" href="#">Profil</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Messages</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="#">Trip</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="#">Path</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="#">World Map</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link " href="#">Admin Panel</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0">
-                <a href='<c:url value="/loginPage" />' class="btn btn-outline-success my-2 my-sm-0">Sign in</a>
-                <button class="btn btn-outline-success my-2 my-sm-0" >Sign up</button>
-               
-              </form>
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item"> <!-- <li class="nav-item active"> -->
+                    <a class="nav-link" href="#">Profil</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Messages</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">Trip</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">Path</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">World Map</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="#">Admin Panel</a>
+                  </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <ul class="navbar-nav mr-auto">
+                  <li class="nav-item"> <!-- <li class="nav-item active"> -->
+                      <a class="nav-link" href='<c:url value="/loginPage" />'><strong>Sign in</strong></a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#"><strong>Sign up</strong></a>
+                  </li>
+              
+                </ul>
+              
+                </form>
             </div>
         </nav>
         
