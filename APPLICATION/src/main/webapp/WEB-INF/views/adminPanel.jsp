@@ -11,8 +11,8 @@
         
  </head>
     <body>
-        <jsp:include page='topNavBar.jsp' />
-        <h1>INDEX</h1>
+         <jsp:include page='topNavBar.jsp' />
+        <h1>Admin Panel</h1>
         
         
     </body>

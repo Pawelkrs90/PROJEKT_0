@@ -54,6 +54,14 @@ public class User implements Serializable{
 	this.userRole = userRole;
     }
 
+    public void addRole(UserRole role){
+        userRole.add(role);
+    }
+    
+    public void deleteRole(UserRole role){
+        userRole.remove(role);
+    }
+
     public int getId() {
         return id;
     }

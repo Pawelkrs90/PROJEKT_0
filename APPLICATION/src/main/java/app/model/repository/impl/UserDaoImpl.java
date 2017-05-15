@@ -11,6 +11,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -104,10 +106,9 @@ public class UserDaoImpl implements UserDao{
             transaction.begin();
             
             User user = (User) sessionFactory.getCurrentSession()
-			.createQuery("from USERS where username=?")
-			.setParameter(0, name).list().get(0);
-
-           // User user = (User) session.get(User.class, Id);
+                        .createCriteria(User.class)
+                        .add(Restrictions.eq("username", name))
+                        .list().get(0);
 
             transaction.commit();
             

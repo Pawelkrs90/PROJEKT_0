@@ -12,21 +12,23 @@
     </head>
 
     <body>
-    <jsp:include page='TopNavBar.jsp' />
+    <jsp:include page='topNavBar.jsp' />
         
     
-       <section class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-3 centered" style="padding-bottom: 15px">
 
-                <div class="thumbnail">
-
-                    <div class="caption">
-                    <form action='<c:url value="/login" />' method="post" > 
-                 
+            <div class="d-flex justify-content-center" >
+                
+                <form action='<c:url value="/login" />' method="post" style="border: solid 1px #666666; border-radius: 8px; 
+                                                                                 padding-left: 4vw; padding-right: 4vw;
+                                                                                 padding-bottom: 4vh; padding-top: 3vh;
+                                                                                 background: url('<c:url value="/resources/images/textures/blackBg/black10.png" />')"> 
+  
+                    <h2 style="color: #333333"><spring:message text="Please sign in" /></h2>
+                                
+                                
                                 <c:if test="${param.error != null}">
                                     <div class="alert alert-danger">
-                                        <p>Invalid username and password.</p>
+                                        <p>Invalid username or password.</p>
                                     </div>
                                 </c:if>
                                 <c:if test="${param.logout != null}">
@@ -34,8 +36,6 @@
                                         <p>You have been logged out successfully.</p>
                                     </div>
                                 </c:if>
-                                
-                                <h3><spring:message text="Please sign in" /></h3>
                                 <fieldset>
                               
                                
@@ -58,15 +58,9 @@
                                     </div> 
                                 </fieldset>
                                 
-                            </form>
-                     </div>
-
-                </div>
-
+                    </form>
             </div>
-        </div>
-    </section>
-    
+
     
         
     </body>

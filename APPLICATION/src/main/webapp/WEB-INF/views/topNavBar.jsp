@@ -20,7 +20,7 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">START</a>
+            <a class="navbar-brand" href='<c:url value="/home" />'>Home</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -40,7 +40,7 @@
                     <a class="nav-link " href="#">World Map</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link " href="#">Admin Panel</a>
+                    <a class="nav-link " href='<c:url value="/adminPanel" />'>Admin Panel</a>
                   </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
