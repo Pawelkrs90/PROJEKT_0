@@ -3,6 +3,7 @@ package app.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,9 +33,6 @@ public class User implements Serializable{
     @Column(name="locked")
     private boolean locked = false;
     
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<UserRole> userRole = new HashSet<UserRole>(0);
-
     public User(){
         
     }
@@ -51,17 +49,9 @@ public class User implements Serializable{
 	this.password = password;
 	this.enabled = enabled;
         this.locked = locked;
-	this.userRole = userRole;
-    }
-
-    public void addRole(UserRole role){
-        userRole.add(role);
+	
     }
     
-    public void deleteRole(UserRole role){
-        userRole.remove(role);
-    }
-
     public int getId() {
         return id;
     }
@@ -92,14 +82,6 @@ public class User implements Serializable{
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-    }
-
-    public Set<UserRole> getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(Set<UserRole> userRole) {
-        this.userRole = userRole;
     }
 
     public boolean isLocked() {

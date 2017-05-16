@@ -6,9 +6,11 @@
 package app.service.Impl;
 
 import app.model.User;
+import app.model.UserRole;
 import app.model.repository.UserDao;
 import app.service.UserDaoService;
 import java.util.List;
+import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,5 @@ public class UserDaoServiceImpl implements UserDaoService{
     public User findByUserName(String name) {
        return userDao.findByUserName(name);
     }
-
 
 }

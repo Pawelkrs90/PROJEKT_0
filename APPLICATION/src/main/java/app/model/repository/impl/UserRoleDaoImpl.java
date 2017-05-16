@@ -13,6 +13,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,7 +50,6 @@ public class UserRoleDaoImpl implements UserRoleDao{
             if(session.isOpen())
                 session.close();
         }
-    
     }
     
     @Transactional
@@ -73,7 +73,6 @@ public class UserRoleDaoImpl implements UserRoleDao{
 
         try{
             transaction.begin();
-            //session.createCriteria(UserRole.class);
             List<UserRole> userRoleList = session.createCriteria(UserRole.class).list();
             transaction.commit();
             return userRoleList;
@@ -90,15 +89,17 @@ public class UserRoleDaoImpl implements UserRoleDao{
 
     @Transactional
     @Override
-    public List<UserRole> getUserRoleListByUser(User user){
+    public List<UserRole> getUserRoleListByUser(int id){
         
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.getTransaction();
 
         try{
             transaction.begin();
-            List<UserRole> userRoleList  =  session.createQuery("from USER_ROLES where user=?")
-                                                   .setParameter(0, user).list();
+            List<UserRole> userRoleList  =  session.createCriteria(UserRole.class)
+                                                   .add(Restrictions.eq("USER_ID", id)) 
+                                                   .list();
+           
             transaction.commit();
             
             return userRoleList;

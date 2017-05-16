@@ -40,6 +40,6 @@
 	<authentication-provider user-service-ref="loginSecurityService" />
     </authentication-manager>
 
-    <beans:bean id="loginSecurityService" class="app.service.LoginSecurityService" />
+    <!--<beans:bean id="loginSecurityService" class="app.service.LoginSecurityService" />-->
      
 </beans:beans>

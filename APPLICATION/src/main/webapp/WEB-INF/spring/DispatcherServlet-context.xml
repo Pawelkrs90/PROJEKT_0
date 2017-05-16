@@ -76,8 +76,6 @@
              <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
         </bean>
                    
-        <bean id="loginSecurityService" class="app.service.LoginSecurityService">
-	      <property name="userDao" ref="userDao" />
-	</bean>
+        <bean id="loginSecurityService" class="app.service.LoginSecurityService"/>
         
 </beans>

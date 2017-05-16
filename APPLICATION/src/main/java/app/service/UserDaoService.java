@@ -7,7 +7,9 @@ package app.service;
 
 import app.service.*;
 import app.model.User;
+import app.model.UserRole;
 import java.util.List;
+import java.util.Set;
 
 
 public interface UserDaoService {

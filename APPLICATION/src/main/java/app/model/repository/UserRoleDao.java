@@ -10,6 +10,6 @@ public interface UserRoleDao{
     public void deleteUserRole(UserRole userRole);
     public void deletUserRoleByUser(User user);
     public List<UserRole> getUserRoleList();
-    public List<UserRole> getUserRoleListByUser(User user);
+    public List<UserRole> getUserRoleListByUser(int id);
  
 }

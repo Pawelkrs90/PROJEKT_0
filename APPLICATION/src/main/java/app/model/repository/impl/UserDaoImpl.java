@@ -11,7 +11,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Expression;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -155,5 +154,5 @@ public class UserDaoImpl implements UserDao{
         }
         return null;
     }
-    
+  
 }

@@ -48,8 +48,8 @@ public class UserRoleDaoServiceImpl implements UserRoleDaoService{
 
     @Transactional
     @Override
-    public List<UserRole> getUserRoleListByUser(User user) {
-        return userRoleDao.getUserRoleListByUser(user);
+    public List<UserRole> getUserRoleListByUser(int id) {
+        return userRoleDao.getUserRoleListByUser(id);
     }
 
 

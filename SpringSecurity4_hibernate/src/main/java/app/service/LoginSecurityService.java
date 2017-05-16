@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import org.jboss.logging.Logger;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,15 +29,18 @@ public class LoginSecurityService implements  UserDetailsService {
 
     //@Autowired
     private UserDao userDao;
-
+    Logger logger = Logger.getLogger(getClass().getName());
+    
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
+            logger.info("APP_LOG - Autentification - Start");
+        
             app.model.User user = userDao.findByUserName(username);
 
 		if (user == null) {
-			throw new UsernameNotFoundException("Invalid username or password");
+			throw new UsernameNotFoundException("Invalid username");
 		}
 		return new org.springframework.security.core.userdetails.User(username, user.getPassword(), user.isEnabled(),
 				true, true, true, getAuthorities(user));
@@ -46,6 +50,8 @@ public class LoginSecurityService implements  UserDetailsService {
             
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
+        logger.info("APP_LOG - Gettining User Roles");
+        
         for (UserRole role : user.getUserRole()) {
 		 authorities.add(new SimpleGrantedAuthority(role.getRole()));
         }
