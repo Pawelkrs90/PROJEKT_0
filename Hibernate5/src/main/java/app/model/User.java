@@ -32,7 +32,7 @@ public class User implements Serializable{
     @Column(name="locked")
     private boolean locked = false;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
     public User(){
