@@ -1,0 +1,13 @@
+app\model\repository\UserDao.class
+app\model\repository\impl\UserDaoImpl.class
+app\service\Impl\UserRoleDaoServiceImpl.class
+app\model\repository\UserRoleDao.class
+app\model\User.class
+app\service\UserRoleDaoService.class
+app\model\UserRole.class
+app\controllers\IndexController.class
+app\model\repository\impl\UserRoleDaoImpl.class
+app\service\Impl\UserDaoServiceImpl.class
+app\service\UserDaoService.class
+app\service\LoginSecurityService.class
+app\controllers\UserCrontroller.class
