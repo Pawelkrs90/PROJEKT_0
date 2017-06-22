@@ -43,6 +43,7 @@ public class UserDaoServiceImpl implements UserDaoService{
     }  
 
     @Override
+    @SuppressWarnings("unchecked")
     public User findByUserName(String name) {
        return userDao.findByUserName(name);
     }

@@ -2,8 +2,13 @@
 package app.controllers;
 
 import app.model.User;
+import app.model.UserRole;
+import app.model.forms.UserForm;
 import app.service.UserDaoService;
 import app.service.UserRoleDaoService;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,15 +43,19 @@ public class UserCrontroller {
 	this.userRoleDaoService = us;
     }
     
-    /*@RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public String addUserGet(ModelMap model) {
+    @RequestMapping(value = "/AddUser", method = RequestMethod.GET)
+    public String addUser(ModelMap model) {
         
-        model.addAttribute("newUser", new User());
-        return "AddUser";
+        List<String> roleList = new ArrayList<>(Arrays.asList("ADMIN_ROLE", "USER_ROLE", "VIP_ROLE", "GUEST_ROLE"));
+        
+        model.addAttribute("RoleList", roleList);
+        model.addAttribute("userToAdd", new UserForm());
+        return "AddUserPage";
     }
     
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("newUser") @Valid User user, BindingResult result, HttpServletRequest httpRequest){
+
+    @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
+    public String addUserPost(@ModelAttribute("userToAdd") @Valid UserForm userForm, BindingResult result, HttpServletRequest httpRequest){
         
             if(result.hasErrors()){   //jesli Validacja zwroci problem
                 return "AddUser";
@@ -56,25 +65,31 @@ public class UserCrontroller {
                 throw new RuntimeException("Proba wiazania niedozwolonych pol: "+ StringUtils.arrayToCommaDelimitedString(result.getSuppressedFields()));
             }
                   
-            userDaoService.addUser(user);
-            return "redirect:/User/userList";
+            User user = new User(userForm.getUsername(), userForm.getPassword());
+            userDaoService.saveUser(user);
+            
+            UserRole userRole = new UserRole(user, userForm.getRole_name());
+            userRoleDaoService.saveUserRole(userRole);
+   
+            user.addRole(userRole);
+
+            return "redirect:/User/UserListPage";
     }
     
     @InitBinder
     public void initialiseBinder(WebDataBinder binder){
             
-        binder.setAllowedFields("username", "password");
+        binder.setAllowedFields("username", "password", "role_name");
     }
     
-    @RequestMapping(value = "/userList", method = RequestMethod.GET)
+    @RequestMapping(value = "/UserListPage", method = RequestMethod.GET)
     public String userList(ModelMap model) {
 
         model.addAttribute("userList", userDaoService.getUserList());
-      //  model.addAttribute("UserRoleForm", new UserRoleForm());
-        return "UserList";
+        return "UserListPage";
     }
     
-  
+  /*
     @RequestMapping(value = "/userList", method = RequestMethod.POST)
     public String addUserRolePOST(@ModelAttribute("UserRoleForm")UserRoleForm userRoleForm){
 

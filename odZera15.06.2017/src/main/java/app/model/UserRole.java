@@ -26,7 +26,7 @@ public class UserRole implements Serializable{
     private User user;
     
     @Column(name = "USER_ROLE_NAME", nullable = false, length = 45)
-    private String role;
+    private String name;
 
     public UserRole() {
     
@@ -34,7 +34,7 @@ public class UserRole implements Serializable{
 
     public UserRole(User user, String role) {
 	this.user = user;
-	this.role = role;
+	this.name = role;
     }
 
     public int getId() {
@@ -53,12 +53,12 @@ public class UserRole implements Serializable{
         this.user = user;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
     
     
