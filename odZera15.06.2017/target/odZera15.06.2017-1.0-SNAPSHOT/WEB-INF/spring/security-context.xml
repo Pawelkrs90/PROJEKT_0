@@ -37,6 +37,19 @@
         <logout logout-success-url="/secLogout" invalidate-session="true" logout-url="/logout" />
       
     </http>
+    
+    <authentication-manager >
+        <authentication-provider>
+            <user-service>
+                <user name="user"  password="user"  authorities="ROLE_USER" />
+                <user name="admin" password="admin" authorities="ROLE_ADMIN" />
+                <user name="vip"   password="vip" authorities="ROLE_ADMIN, ROLE_VIP" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+     
+      
+       <!-- 
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="userDetailsService" />
@@ -45,7 +58,7 @@
 	    <beans:property name="userDao" ref="userDao" /> 
      </beans:bean>
     
-
+-->
  
          
 </beans:beans>
