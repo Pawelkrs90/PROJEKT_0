@@ -51,7 +51,7 @@ public class LoginController {
         model.addAttribute("result", "LOG OUT");
         return "loginResult";
     }*/
-     @RequestMapping(value="/secLogout", method = RequestMethod.GET)
+     @RequestMapping(value="/succLogout", method = RequestMethod.GET)
      public String logoutPage(ModelMap model) {
         
         model.addAttribute("result", "LOG OUT");

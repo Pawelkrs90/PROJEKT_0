@@ -21,7 +21,7 @@
         <csrf disabled="false" /> <!--  If csrf enabled, need to use post method to logout, add csrf token as hidden field. -->
        
         <access-denied-handler error-page="/accesDenied"/>
-        <logout logout-success-url="/secLogout" invalidate-session="true" logout-url="/logout" />
+        <logout logout-success-url="/succLogout" invalidate-session="true" logout-url="/logout" />
       
     </http>
 

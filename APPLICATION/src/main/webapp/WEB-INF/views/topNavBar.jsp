@@ -45,14 +45,28 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <ul class="navbar-nav mr-auto">
-                  <li class="nav-item"> <!-- <li class="nav-item active"> -->
-                      <a class="nav-link" href='<c:url value="/loginPage" />'><strong>Sign in</strong></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href='<c:url value="/User/AddUser" />'><strong>Sign up</strong></a>
-                  </li>
-              
-                </ul>
+                        <sec:authorize access="!isAuthenticated()">
+                            <li class="nav-item"> <!-- <li class="nav-item active"> -->
+                                <a class="nav-link" href='<c:url value="/loginPage" />'><strong>Sign in</strong></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href='<c:url value="/User/AddUser" />'><strong>Sign up</strong></a>
+                            </li>
+                        </sec:authorize>
+                        
+                        <sec:authorize access="isAuthenticated()">
+                            <li class="nav-item">
+                                <a class="nav-link" href='#'><strong style="color: #009900">User: <sec:authentication property="principal.username" /> </strong></a>
+            
+                            </li>
+                            <li class="nav-item">
+                                <form action='<c:url value="/logout" />' method="post" id="logoutForm">
+                                    <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+                                    <input type="submit" id="btnLogout"  value="Logout"  class="btn btn-success btn-sm" />
+                                </form>
+                            </li>
+                        </sec:authorize>
+                    </ul>
               
                 </form>
             </div>

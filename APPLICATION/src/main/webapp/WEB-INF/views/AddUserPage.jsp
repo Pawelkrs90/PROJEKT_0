@@ -14,7 +14,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-        <title>Index</title>
         <link href="<c:url value="/resources/css/body.css" />" rel="stylesheet">
         <title>Index</title>
     </head>
@@ -48,7 +47,7 @@
                                     <label  for="role"><spring:message text="Role" /></label>
                                     <div  >
                                         
-                                        <form:select id="role_name" class="form-control" path="role_name" multiple="true">           
+                                        <form:select id="role_name" class="form-control" path="role_name" >           
                                             <form:option value="NONE" label="--- Select ---" />
                                             <form:options items="${RoleList}" />
                                         </form:select>
