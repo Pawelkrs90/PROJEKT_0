@@ -39,8 +39,8 @@ public class InitAdmin {
     @RequestMapping(value = {"/adminAccount" }, method = RequestMethod.GET)
     public String initAdminAccount(Model model) {
   
-        userDaoService.addUser(new User("ADMIN", "abcd", true, false));
-        userRoleDaoService.addUserRole(new UserRole(userDaoService.findByUserName("ADMIN").getId(), "ROLE_ADMIN"));
+    //    userDaoService.addUser(new User("ADMIN", "abcd", true, false));
+      //  userRoleDaoService.addUserRole(new UserRole(userDaoService.findByUserName("ADMIN").getId(), "ROLE_ADMIN"));
 
        // userDaoService.findByUserName("ADMIN").getUserRole().stream().forEach(x->logger.info("XX: "+x.getRole()));
         

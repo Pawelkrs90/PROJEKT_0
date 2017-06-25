@@ -10,8 +10,8 @@ public class IndexController{
  
     @RequestMapping(value = {"/", "/index" }, method = RequestMethod.GET)
     public String homePage(Model model) {
-  
+        
+        model.addAttribute("IndexInfo", "Application Start Page");
         return "index";
     }
-    
 }

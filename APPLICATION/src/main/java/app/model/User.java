@@ -3,7 +3,6 @@ package app.model;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,29 +18,29 @@ public class User implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="USER_ID")
     private int id;
     
-    @Column(name="username")
+    @Column(name="USER_NAME")
     private String username;
 
-    @Column(name="password")
+    @Column(name="USER_PASSWORD")
     private String password;
     
-    @Column(name="enabled")
+    @Column(name="IS_ENABLED")
     private boolean enabled = true;
     
-    @Column(name="locked")
+    @Column(name="IS_LOCKED")
     private boolean locked = false;
     
-    public User(){
-        
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<UserRole> userRole = new HashSet<UserRole>(0);
+
+    public User(){}
     
-    public User(String username, String password, boolean enabled, boolean locked) {
+    public User(String username, String password) {
 	this.username = username;
 	this.password = password;
-	this.enabled = enabled;
-        this.locked = locked;
     }
 
     public User(String username, String password, boolean enabled, boolean locked, Set<UserRole> userRole) {
@@ -49,9 +48,17 @@ public class User implements Serializable{
 	this.password = password;
 	this.enabled = enabled;
         this.locked = locked;
-	
+	this.userRole = userRole;
     }
     
+    public void addRole(UserRole role){
+        userRole.add(role);
+    }
+    
+    public void deleteRole(UserRole role){
+        userRole.remove(role);
+    }
+
     public int getId() {
         return id;
     }
@@ -76,6 +83,14 @@ public class User implements Serializable{
         this.password = password;
     }
 
+    public Set<UserRole> getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Set<UserRole> userRole) {
+        this.userRole = userRole;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -91,6 +106,6 @@ public class User implements Serializable{
     public void setLocked(boolean locked) {
         this.locked = locked;
     }
-    
+
     
 }

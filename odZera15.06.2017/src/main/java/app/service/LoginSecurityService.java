@@ -37,12 +37,35 @@ public class LoginSecurityService implements UserDetailsService {
     }
  
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-        logger.info("Username: xxx");
+        logger.info("ROZPOCZYNAM LOGOWANIE");
         app.model.User user;
         
+       if(userDao != null){
+           logger.info("OK. -> DAO != NULL");
+           logger.info("POBIERAM USERA: "+username);
+           user = userDao.findByUserName(username);
+           
+           if(user==null){
+                logger.info("ERRRO. USER == NULL");
+                throw new UsernameNotFoundException("Invalid username or password");
+           }
+           else{
+               logger.info("OK. USER != NULL");
+               return new org.springframework.security.core.userdetails.
+                       User(username, user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user));
+           }
+       }
+       else{
+           logger.info("DAO == NULL");
+       }
+        
+        /*
+        
         if(userDao!=null){
+            logger.info("POBIERAM USERA");
             user = userDao.findByUserName(username);
             logger.info("Username: "+user.getUsername());
             if (user == null) {
@@ -51,8 +74,8 @@ public class LoginSecurityService implements UserDetailsService {
             return new org.springframework.security.core.userdetails.User(username, user.getPassword(), user.isEnabled(), true, true, true, getAuthorities(user));
         }
         else{
-            logger.info("xxxxxxxxEMPTY");
-        }
+            logger.info("DAO JEST NULLEM");
+        }*/
 
         return null;
     }

@@ -49,7 +49,7 @@
                       <a class="nav-link" href='<c:url value="/loginPage" />'><strong>Sign in</strong></a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#"><strong>Sign up</strong></a>
+                      <a class="nav-link" href='<c:url value="/User/AddUser" />'><strong>Sign up</strong></a>
                   </li>
               
                 </ul>

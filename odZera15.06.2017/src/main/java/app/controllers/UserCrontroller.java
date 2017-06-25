@@ -20,8 +20,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/User")
@@ -46,7 +48,7 @@ public class UserCrontroller {
     @RequestMapping(value = "/AddUser", method = RequestMethod.GET)
     public String addUser(ModelMap model) {
         
-        List<String> roleList = new ArrayList<>(Arrays.asList("ADMIN_ROLE", "USER_ROLE", "VIP_ROLE", "GUEST_ROLE"));
+        List<String> roleList = new ArrayList<>(Arrays.asList("ROLE_ADMIN", "ROLE_USER", "ROLE_VIP", "ROLE_GUEST"));
         
         model.addAttribute("RoleList", roleList);
         model.addAttribute("userToAdd", new UserForm());
@@ -88,6 +90,23 @@ public class UserCrontroller {
         model.addAttribute("userList", userDaoService.getUserList());
         return "UserListPage";
     }
+    
+    //User/UserDetailsPage?userId=2
+    @RequestMapping(value = "/UserDetailsPage", method = RequestMethod.GET)
+    public String userDetailsByRequestParam(ModelMap model, @RequestParam(value = "userId", defaultValue = "1") int userId) {
+
+        model.addAttribute("user", userDaoService.getUserById(userId));        
+        return "UserDetailsPage";
+    }
+    
+    ///User/UserDetailsPage/2
+    @RequestMapping(value = "/UserDetailsPage/{userId}", method = RequestMethod.GET)
+    public String userDetailsByPathVariable(ModelMap model, @PathVariable("userId") int userId) {
+
+        model.addAttribute("user", userDaoService.getUserById(userId));        
+        return "UserDetailsPage";
+    }
+    
     
   /*
     @RequestMapping(value = "/userList", method = RequestMethod.POST)

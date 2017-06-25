@@ -6,11 +6,9 @@
 package app.service.Impl;
 
 import app.model.User;
-import app.model.UserRole;
 import app.model.repository.UserDao;
 import app.service.UserDaoService;
 import java.util.List;
-import java.util.Set;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +23,9 @@ public class UserDaoServiceImpl implements UserDaoService{
     
     @Override
     @Transactional
-    public void addUser(User user) {
+    public void saveUser(User user) {
         
-        userDao.addUser(user);
+        userDao.saveUser(user);
     }
 
     @Override
@@ -45,8 +43,8 @@ public class UserDaoServiceImpl implements UserDaoService{
     }  
 
     @Override
+    @Transactional
     public User findByUserName(String name) {
        return userDao.findByUserName(name);
     }
-
 }

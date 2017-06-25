@@ -11,7 +11,7 @@
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+               <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <springframework.version>4.1.6.RELEASE</springframework.version>
         <springsecurity.version>4.0.1.RELEASE</springsecurity.version>
         <hibernate.version>5.2.5.Final</hibernate.version>
@@ -19,7 +19,12 @@
     </properties>
     
     <dependencies>
-    
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -105,6 +110,7 @@
             <version>4.3.6.Final</version>
         </dependency>
         
+        
         <!-- database pool -->
 	<dependency>
 		<groupId>commons-dbcp</groupId>
@@ -118,27 +124,8 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.36</version>
         </dependency>
-  
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
         
-        
-	    <!-- logger -->
-	    <dependency>
-	  	<groupId>log4j</groupId>
-	  	<artifactId>log4j</artifactId>
-	  	<version>1.2.12</version>
-	    </dependency>
-            
-
-            
-            
     </dependencies>
-
     <build>
         <plugins>
             <plugin>

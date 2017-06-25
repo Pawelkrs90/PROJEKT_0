@@ -24,8 +24,8 @@ public class UserRoleDaoServiceImpl implements UserRoleDaoService{
 
     @Transactional
     @Override
-    public void addUserRole(UserRole userRole) {
-        userRoleDao.addUserRole(userRole);
+    public void saveUserRole(UserRole userRole) {
+        userRoleDao.saveUserRole(userRole);
     }
     
     @Transactional
@@ -45,12 +45,4 @@ public class UserRoleDaoServiceImpl implements UserRoleDaoService{
     public List<UserRole> getUserRoleList() {
         return userRoleDao.getUserRoleList();
     }
-
-    @Transactional
-    @Override
-    public List<UserRole> getUserRoleListByUser(int id) {
-        return userRoleDao.getUserRoleListByUser(id);
-    }
-
-
 }

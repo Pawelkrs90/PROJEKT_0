@@ -9,11 +9,8 @@
         <title>JSP Page</title>
         <link href="<c:url value="/resources/css/body.css" />" rel="stylesheet">
         
- </head>
+    </head>
     <body>
-        <jsp:include page='topNavBar.jsp' />
-        <h1>INDEX</h1>
-        
-        
+          <jsp:include page='topNavBar.jsp' />
     </body>
 </html>

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.model.repository.impl;
 
 import app.model.User;
@@ -13,9 +8,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Repository
 public class UserRoleDaoImpl implements UserRoleDao{
@@ -32,14 +27,14 @@ public class UserRoleDaoImpl implements UserRoleDao{
 
     @Transactional
     @Override
-    public void addUserRole(UserRole userRole) {
+    public void saveUserRole(UserRole userRole) {
     
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.getTransaction();
          
         try{
             transaction.begin();
-            session.persist(userRole); //session.save(userRole);
+            session.save(userRole);
             transaction.commit(); 
         }
         catch(Exception e){
@@ -75,6 +70,7 @@ public class UserRoleDaoImpl implements UserRoleDao{
             transaction.begin();
             List<UserRole> userRoleList = session.createCriteria(UserRole.class).list();
             transaction.commit();
+            
             return userRoleList;
         }
         catch(HibernateException e){         
@@ -86,32 +82,5 @@ public class UserRoleDaoImpl implements UserRoleDao{
         }
         return null; 
     }
-
-    @Transactional
-    @Override
-    public List<UserRole> getUserRoleListByUser(int id){
-        
-        Session session = sessionFactory.getCurrentSession();
-        Transaction transaction = session.getTransaction();
-
-        try{
-            transaction.begin();
-            List<UserRole> userRoleList  =  session.createCriteria(UserRole.class)
-                                                   .add(Restrictions.eq("USER_ID", id)) 
-                                                   .list();
-           
-            transaction.commit();
-            
-            return userRoleList;
-        }
-        catch(Exception e){      
-           e.printStackTrace();
-           transaction.rollback();
-        } finally {
-            if(session.isOpen())
-                session.close();
-        }
-        return null;
-    }
-    
+  
 }

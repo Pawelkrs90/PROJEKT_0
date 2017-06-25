@@ -1,23 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package app.model.repository.impl;
 
 import app.model.User;
 import app.model.repository.UserDao;
 import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDaoImpl implements UserDao{
     
+    private Logger logger = Logger.getLogger(getClass().getName());
     private SessionFactory sessionFactory;
 
     public SessionFactory getSessionFactory() {
@@ -30,40 +30,25 @@ public class UserDaoImpl implements UserDao{
 
     @Transactional
     @Override
-    public void addUser(User user) {
+    public void saveUser(User user) {
     
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.getTransaction();
-        //session.persist(user);
-        
-         //Logger.getLogger(this.getClass().getName()).info("ok??");
-         
-         //session.persist(user);
-         //session.save(user);
-         
+      
         try{
             transaction.begin();
-            
-           // session.persist(user);
             session.save(user);
-           
-           
             transaction.commit();
-           // Logger.getLogger(this.getClass().getName()).info("OKOK");
-            
         }
-        catch(Exception e){
-            
-           e.printStackTrace();
-           transaction.rollback();
+        catch(Exception e){   
+            e.printStackTrace();
+            transaction.rollback();
         } finally {
             if(session.isOpen())
                 session.close();
         }
-        
     }
 
-    
     @Transactional
     @Override
     public User getUserById(int Id) {
@@ -73,49 +58,45 @@ public class UserDaoImpl implements UserDao{
 
         try{
             transaction.begin();
-            
-            //List<User> userList = session.createQuery("from User").list();
-          
             User user = (User) session.get(User.class, Id);
-
             transaction.commit();
             
             return user;
         }
         catch(Exception e){
-            
-           e.printStackTrace();
            transaction.rollback();
         } finally {
             if(session.isOpen())
                 session.close();
         }
-        return null;
         
+        return null;
     }
     
     @Transactional
     @Override
     public User findByUserName(String name){
-
+        
+        logger.info("findUserByName");
         Session session = sessionFactory.getCurrentSession();
         Transaction transaction = session.getTransaction();
 
         try{
             transaction.begin();
-            
-            User user = (User) sessionFactory.getCurrentSession()
-                        .createCriteria(User.class)
-                        .add(Restrictions.eq("username", name))
-                        .list().get(0);
+        
+            session.createCriteria(User.class);     
+            Criteria criteria = session.createCriteria(User.class);
+            criteria.add(Restrictions.eq("username", name));
+             
+            User user = (User) criteria.list().get(0);
+           
 
             transaction.commit();
             
             return user;
         }
-        catch(Exception e){
-            
-           e.printStackTrace();
+        catch(HibernateException e){
+            logger.info("rollback");
            transaction.rollback();
         } finally {
             if(session.isOpen())
@@ -134,25 +115,18 @@ public class UserDaoImpl implements UserDao{
 
         try{
             transaction.begin();
-            
-            //List<User> userList = session.createQuery("from User").list();
-          
-            session.createCriteria(User.class);
+           
             List<User> userList =  session.createCriteria(User.class).list();
-
             transaction.commit();
             
             return userList;
         }
         catch(Exception e){
-            
-           e.printStackTrace();
            transaction.rollback();
         } finally {
             if(session.isOpen())
                 session.close();
         }
         return null;
-    }
-  
+    }   
 }
