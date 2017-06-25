@@ -7,47 +7,38 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-     
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <link href="<c:url value="/resources/css/body.css" />" rel="stylesheet">
         
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-         <link href="<c:url value="/resources/css/body.css" />" rel="stylesheet">
-        <title>Index</title>
+        <title>ListPage</title>
     </head>
 
     <body>
+        <jsp:include page='topNavBar.jsp' />
+          
+        <div class="container">
+            <div class="row">
 
-    <section class="container">
-        <div class="row">
-            <c:forEach items="${userList}" var="user">
-                <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-
-                    <div class="thumbnail">
-
-                        <div class="caption">
-
-                            <h3>${user.id}</h3>
-                            <p>${user.username}</p>
-                            <p>${user.password}</p>
-                             <c:forEach items="${user.userRole}" var="role">
-                                 <p>${role.name}</p>
-                             </c:forEach>
+                <c:forEach items="${userList}" var="user">
+                    <div class="col-md-2 col-sm-5 col-xs-11" style="padding-bottom: 15px">
+                            
                        
+                                <h3>${user.id}</h3>
+                                <p>${user.username}</p>
+                                <p>${user.password}</p>
+                                 <c:forEach items="${user.userRole}" var="role">
+                                     <p>${role.name}</p>
+                                 </c:forEach>
 
-                        </div>
-
+                     
                     </div>
+                </c:forEach>
 
-                </div>
-            </c:forEach>
+            </div>
         </div>
-    </section>
 
     </body>
-    
 </html>

@@ -19,19 +19,13 @@
         <title>Index</title>
     </head>
 
-      <jsp:include page='topNavBar.jsp' />
+        <jsp:include page='topNavBar.jsp' />
           
-     <div class="d-flex justify-content-center">
-        
-    <section class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
-
-                <div class="thumbnail">
-
-                        <div class="caption">
-
-                            <h3>Add User Form </h3>
+        <section >
+ 
+                <div class="d-flex justify-content-center">
+                    <div class="container-fluid">
+                      <h3>Add User Form </h3>
                             <form:form modelAttribute="userToAdd" >
                                 
                                 <form:errors path="*" cssClass="alert alert-danger" element="div" />
@@ -50,18 +44,17 @@
                                         <form:input id="password" path="password" type="text" class="form-control" placeholder="Password" />
                                         <form:errors path="password" cssClass="text-danger" />
                                     </div>
-                                    
-                                    
+
                                     <label  for="role"><spring:message text="Role" /></label>
                                     <div  >
                                         
-                                        <form:select id="role_name" class="form-control" path="role_name">           
+                                        <form:select id="role_name" class="form-control" path="role_name" multiple="true">           
                                             <form:option value="NONE" label="--- Select ---" />
                                             <form:options items="${RoleList}" />
                                         </form:select>
                                         <form:errors path="role_name" cssClass="text-danger" />
                                     </div>
-                                       
+
                                     <div >
                                         <br/>
                                         <input type="submit" id="btnAdd" class="btn btn-primary" value="Submit" />
@@ -70,14 +63,10 @@
                                 
                             </form:form>
 
-                        </div>
-
+                    </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
- </div>
+            </section>
+    
     </body>
     
 </html>

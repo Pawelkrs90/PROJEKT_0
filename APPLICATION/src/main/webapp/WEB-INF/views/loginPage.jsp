@@ -18,64 +18,52 @@
         
     </head>
     <body>
-          <jsp:include page='topNavBar.jsp' />
+        <jsp:include page='topNavBar.jsp' />
           
-     <div class="d-flex justify-content-center">
-        
-    <section class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+            <section>
+                <div class="d-flex justify-content-center">
+                    <div class="container-fluid">
+                        <h3>Login Form </h3>
 
-                <div class="thumbnail">
-                        <div class="caption">
+                        <form action='<c:url value="/login" />' method="post" > 
 
-                            <h3>Login Form </h3>
-                            
-                            <form action='<c:url value="/login" />' method="post" > 
-                 
-                                <c:if test="${param.error != null}">
-                                    <div class="alert alert-danger">
-                                        <p>Invalid username and password.</p>
-                                    </div>
-                                </c:if>
-                                <c:if test="${param.logout != null}">
-                                    <div class="alert alert-success">
-                                        <p>You have been logged out successfully.</p>
-                                    </div>
-                                </c:if>
-                                
-                                <fieldset>
-                              
-                                    <label for="username"><spring:message text="Username" code="" /></label>
-                                    <div >
+                            <c:if test="${param.error != null}">
+                                <div class="alert alert-danger">
+                                    <p>Invalid username and password.</p>
+                                </div>
+                            </c:if>
+                            <c:if test="${param.logout != null}">
+                                <div class="alert alert-success">
+                                    <p>You have been logged out successfully.</p>
+                                </div>
+                            </c:if>
+
+                            <fieldset>
+
+                                <label for="username"><spring:message text="Username" code="" /></label>
+                                <div >
                                         <input type="text" class="form-control" id="username" path="username" name="securityUsername" placeholder="Enter Username" required="true" />
-                                       
-                                    </div>
-                                    
-                                    <label for="password"><spring:message text="Password" code="" /></label>
-                                    <div  >
-                                         <input type="password" class="form-control" id="password" path="password" name="securityPassword" placeholder="Enter Password" required="true" />
-                                        
-                                    </div>
-                                       
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                    
-                                    <div >
-                                        <br/>
-                                        
-                                        <input type="submit" id="btnAdd" class="btn btn-primary" value="Submit" />
-                                    </div> 
-                                </fieldset>
+                                </div>
+
+                                <label for="password"><spring:message text="Password" code="" /></label>
+                                <div  >
+                                    <input type="password" class="form-control" id="password" path="password" name="securityPassword" placeholder="Enter Password" required="true" />
+                                </div>
+
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 
-                            </form>
+                                <div >
+                                    <br/>
+                                    <input type="submit" id="btnAdd" class="btn btn-primary" value="Submit" />
+                                </div> 
+                            </fieldset>
 
-                        </div>
+                        </form>
+
+                    </div>
                 </div>
-
-            </div>
-        </div>
-    </section>
-</div>
+            </section>
+    
     </body>
     
 </html>
