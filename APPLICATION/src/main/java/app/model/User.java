@@ -22,6 +22,7 @@ public class User implements Serializable{
     private int id;
     
     @Column(name="USER_NAME")
+  // @Min(size=3)
     private String username;
 
     @Column(name="USER_PASSWORD")
