@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/User")
 public class UserCrontroller {
     
+    private Logger logger = Logger.getLogger(getClass().getName());
     private UserDaoService userDaoService;
 	
     @Autowired(required=true)
@@ -60,7 +62,8 @@ public class UserCrontroller {
     public String addUserPost(@ModelAttribute("userToAdd") @Valid UserForm userForm, BindingResult result, HttpServletRequest httpRequest){
         
             if(result.hasErrors()){   //jesli Validacja zwroci problem
-                return "AddUser";
+                logger.info("Form have errors, refreshing page...");
+                return "AddUserPage";
             }
             
             if(result.getSuppressedFields().length > 0){  //sprawdzenie czy dodano tylko pola zgodne z binderem
