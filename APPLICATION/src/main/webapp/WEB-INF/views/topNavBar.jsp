@@ -60,9 +60,9 @@
             
                             </li>
                           
-                            <form action='<c:url value="/logout" />' method="post" id="logoutForm">
+                            <form action='<c:url value="/logout" />' method="post" id="logoutFormNavBar">
                                 <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-                                <input type="submit" id="btnLogout"  value="Logout"  class="btn btn-success" />
+                                <input type="submit" id="btnLogoutNavBar"  value="Logout"  class="btn btn-success" />
                             </form>
 
                         </sec:authorize>

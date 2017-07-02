@@ -32,7 +32,8 @@ public class UserCrontroller {
     
     private Logger logger = Logger.getLogger(getClass().getName());
     private UserDaoService userDaoService;
-	
+    private List<String> roleList = new ArrayList<>(Arrays.asList("ROLE_ADMIN", "ROLE_USER", "ROLE_VIP", "ROLE_GUEST"));
+    
     @Autowired(required=true)
     @Qualifier(value="userDaoService")
     public void setUserService(UserDaoService us){
@@ -49,9 +50,7 @@ public class UserCrontroller {
     
     @RequestMapping(value = "/AddUser", method = RequestMethod.GET)
     public String addUser(ModelMap model) {
-        
-        List<String> roleList = new ArrayList<>(Arrays.asList("ROLE_ADMIN", "ROLE_USER", "ROLE_VIP", "ROLE_GUEST"));
-        
+          
         model.addAttribute("RoleList", roleList);
         model.addAttribute("userToAdd", new UserForm());
         return "AddUserPage";
@@ -59,10 +58,11 @@ public class UserCrontroller {
     
 
     @RequestMapping(value = "/AddUser", method = RequestMethod.POST)
-    public String addUserPost(@ModelAttribute("userToAdd") @Valid UserForm userForm, BindingResult result, HttpServletRequest httpRequest){
+    public String addUserPost(ModelMap model, @ModelAttribute("userToAdd") @Valid UserForm userForm, BindingResult result, HttpServletRequest httpRequest){
         
             if(result.hasErrors()){   //jesli Validacja zwroci problem
                 logger.info("Form have errors, refreshing page...");
+                model.addAttribute("RoleList", roleList);
                 return "AddUserPage";
             }
             

@@ -1,5 +1,6 @@
 package app.model.repository.impl;
 
+import app.exceptions.LoginNotFoundException;
 import app.model.User;
 import app.model.repository.UserDao;
 import java.util.List;
@@ -89,21 +90,22 @@ public class UserDaoImpl implements UserDao{
             criteria.add(Restrictions.eq("username", name));
              
             User user = (User) criteria.list().get(0);
-           
-
+            
             transaction.commit();
             
             return user;
         }
         catch(HibernateException e){
             logger.info("rollback");
-           transaction.rollback();
+            transaction.rollback();
+         
+	    throw new LoginNotFoundException(name);
+          
         } finally {
             if(session.isOpen())
                 session.close();
         }
-        return null;
-    
+       
     }
     
     @Transactional

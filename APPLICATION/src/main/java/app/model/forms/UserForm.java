@@ -1,6 +1,7 @@
 
 package app.model.forms;
 
+import app.model.validators.UserLogin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -9,13 +10,14 @@ public class UserForm {
     
     @NotNull(message="{Validation.User.Username.NotNull}")
     @Size(min=4, max=25, message="{Validation.User.Username.Size}")
+    @UserLogin //Validator sprawdzajacy czy login występuje w bazie
     private String username;
     
     @NotNull(message="{Validation.User.Password.NotNull}")
     @Size(min=4, max=25, message="{Validation.User.Password.Size}")
     private String password;
     
-    @Pattern(regexp = "ROLE_[A-Z]", message = "{Validation.User.RoleName.Pattern}")
+    @Pattern(regexp = "ROLE_[A-Z]{3,6}+", message = "{Validation.User.RoleName.Pattern}")
     private String role_name;
 
     public UserForm() {}
